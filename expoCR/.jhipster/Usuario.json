@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "timeline",
+            "otherEntityName": "timeline",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "usuario"
+        },
+        {
+            "relationshipName": "pregunta",
+            "otherEntityName": "pregunta",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "usuario"
+        },
+        {
+            "relationshipName": "stand",
+            "otherEntityName": "stand",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "usuario"
+        },
+        {
+            "relationshipName": "rol",
+            "otherEntityName": "rol",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nombre"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "correo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clave",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606022609",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "usuario",
+    "pagination": "pager"
+}

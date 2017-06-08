@@ -1,0 +1,51 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "stand"
+        },
+        {
+            "relationshipName": "brouchure",
+            "otherEntityName": "brouchure",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "stand"
+        },
+        {
+            "relationshipName": "click",
+            "otherEntityName": "click",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "stand"
+        },
+        {
+            "relationshipName": "beacon",
+            "otherEntityName": "beacon",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "stand"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606043646",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "stand",
+    "pagination": "pager"
+}

@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "brouchure",
+            "otherEntityName": "brouchure",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "subCategoria"
+        },
+        {
+            "relationshipName": "click",
+            "otherEntityName": "click",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "subCategoria"
+        },
+        {
+            "relationshipName": "beacon",
+            "otherEntityName": "beacon",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "subCategoria"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tipo",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606035230",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "sub_categoria",
+    "pagination": "pager"
+}

@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "charla",
+            "otherEntityName": "charla",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "pregunta"
+        },
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "pregunta",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606042500",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "pregunta",
+    "pagination": "pager"
+}

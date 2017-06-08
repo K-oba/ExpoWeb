@@ -1,0 +1,61 @@
+
+<div>
+    <h2><span>Exposicion</span> {{vm.exposicion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.exposicion.nombre}}</span>
+        </dd>
+        <dt><span>Descripcion</span></dt>
+        <dd>
+            <span>{{vm.exposicion.descripcion}}</span>
+        </dd>
+        <dt><span>Estado Expo</span></dt>
+        <dd>
+            <span>{{vm.exposicion.estadoExpo}}</span>
+        </dd>
+        <dt><span>Fecha Inicio</span></dt>
+        <dd>
+            <span>{{vm.exposicion.fechaInicio}}</span>
+        </dd>
+        <dt><span>Fecha Fin</span></dt>
+        <dd>
+            <span>{{vm.exposicion.fechaFin}}</span>
+        </dd>
+        <dt><span>Coordenadas</span></dt>
+        <dd>
+            <span>{{vm.exposicion.coordenadas}}</span>
+        </dd>
+        <dt><span>Distrito</span></dt>
+        <dd>
+            <a ui-sref="distrito-detail({id:vm.exposicion.distritoId})">{{vm.exposicion.distritoId}}</a>
+        </dd>
+        <dt><span>Categoria</span></dt>
+        <dd>
+            <a ui-sref="categoria-detail({id:vm.exposicion.categoriaId})">{{vm.exposicion.categoriaId}}</a>
+        </dd>
+        <dt><span>Amenidades</span></dt>
+        <dd>
+            <span ng-repeat="amenidades in vm.exposicion.amenidades">
+                <a ui-sref="amenidades-detail({id: amenidades.id})">{{amenidades.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Click</span></dt>
+        <dd>
+            <a ui-sref="click-detail({id:vm.exposicion.clickId})">{{vm.exposicion.clickId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="exposicion-detail.edit({id:vm.exposicion.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

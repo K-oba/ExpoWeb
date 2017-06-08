@@ -1,0 +1,83 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myExposicionLabel">Create or edit a Exposicion</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.exposicion.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.exposicion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.exposicion.nombre"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_descripcion">Descripcion</label>
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                    ng-model="vm.exposicion.descripcion"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estadoExpo">Estado Expo</label>
+                <input type="checkbox" name="estadoExpo" id="field_estadoExpo"
+                          ng-model="vm.exposicion.estadoExpo"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaInicio">Fecha Inicio</label>
+            <input type="text" class="form-control" name="fechaInicio" id="field_fechaInicio"
+                    ng-model="vm.exposicion.fechaInicio"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fechaFin">Fecha Fin</label>
+            <input type="text" class="form-control" name="fechaFin" id="field_fechaFin"
+                    ng-model="vm.exposicion.fechaFin"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_coordenadas">Coordenadas</label>
+            <input type="text" class="form-control" name="coordenadas" id="field_coordenadas"
+                    ng-model="vm.exposicion.coordenadas"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label for="field_distrito">Distrito</label>
+            <select class="form-control" id="field_distrito" name="distrito" ng-model="vm.exposicion.distritoId" ng-options="distrito.id as distrito.id for distrito in vm.distritos"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_categoria">Categoria</label>
+            <select class="form-control" id="field_categoria" name="categoria" ng-model="vm.exposicion.categoriaId" ng-options="categoria.id as categoria.id for categoria in vm.categorias"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_amenidades">Amenidades</label>
+            <select class="form-control" id="field_amenidades" multiple name="amenidades" ng-model="vm.exposicion.amenidades" ng-options="amenidades as amenidades.id for amenidades in vm.amenidades track by amenidades.id"></select>
+        </div>
+        <div class="form-group">
+            <label for="field_click">Click</label>
+            <select class="form-control" id="field_click" name="click" ng-model="vm.exposicion.clickId" ng-options="click.id as click.id for click in vm.clicks | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

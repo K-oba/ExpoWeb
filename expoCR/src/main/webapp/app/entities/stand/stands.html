@@ -1,0 +1,74 @@
+<div>
+    <h2>Stands</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="stand.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Stand
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tipo"><span>Tipo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="brouchureId"><span>Brouchure</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="clickId"><span>Click</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="beaconId"><span>Beacon</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="stand in vm.stands track by stand.id">
+                    <td><a ui-sref="stand-detail({id:stand.id})">{{stand.id}}</a></td>
+                    <td>{{stand.nombre}}</td>
+                    <td>{{stand.tipo}}</td>
+                    <td>
+                        <a ui-sref="brouchure-detail({id:stand.brouchureId})">{{stand.brouchureId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="click-detail({id:stand.clickId})">{{stand.clickId}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="beacon-detail({id:stand.beaconId})">{{stand.beaconId}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="stand-detail({id:stand.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="stand.edit({id:stand.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="stand.delete({id:stand.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

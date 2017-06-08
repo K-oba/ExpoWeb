@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "provincia",
+            "otherEntityName": "provincia",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "distrito",
+            "otherEntityName": "distrito",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "canton"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606024921",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "canton",
+    "pagination": "pager"
+}

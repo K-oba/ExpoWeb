@@ -1,0 +1,62 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySubCategoriaLabel">Create or edit a Sub Categoria</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.subCategoria.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.subCategoria.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                    ng-model="vm.subCategoria.nombre"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tipo">Tipo</label>
+            <input type="text" class="form-control" name="tipo" id="field_tipo"
+                    ng-model="vm.subCategoria.tipo"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label for="field_categoria">Categoria</label>
+            <select class="form-control" id="field_categoria" name="categoria" ng-model="vm.subCategoria.categoriaId" ng-options="categoria.id as categoria.id for categoria in vm.categorias"            >
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_brouchure">Brouchure</label>
+            <select class="form-control" id="field_brouchure" name="brouchure" ng-model="vm.subCategoria.brouchureId" ng-options="brouchure.id as brouchure.id for brouchure in vm.brouchures | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_click">Click</label>
+            <select class="form-control" id="field_click" name="click" ng-model="vm.subCategoria.clickId" ng-options="click.id as click.id for click in vm.clicks | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_beacon">Beacon</label>
+            <select class="form-control" id="field_beacon" name="beacon" ng-model="vm.subCategoria.beaconId" ng-options="beacon.id as beacon.id for beacon in vm.beacons | orderBy:'id'">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

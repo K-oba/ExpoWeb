@@ -1,0 +1,45 @@
+
+<div>
+    <h2><span>Usuario</span> {{vm.usuario.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.usuario.nombre}}</span>
+        </dd>
+        <dt><span>Correo</span></dt>
+        <dd>
+            <span>{{vm.usuario.correo}}</span>
+        </dd>
+        <dt><span>Clave</span></dt>
+        <dd>
+            <span>{{vm.usuario.clave}}</span>
+        </dd>
+        <dt><span>Timeline</span></dt>
+        <dd>
+            <span ng-repeat="timeline in vm.usuario.timelines">
+                <a ui-sref="timeline-detail({id: timeline.id})">{{timeline.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Stand</span></dt>
+        <dd>
+            <a ui-sref="stand-detail({id:vm.usuario.standId})">{{vm.usuario.standNombre}}</a>
+        </dd>
+        <dt><span>Rol</span></dt>
+        <dd>
+            <a ui-sref="rol-detail({id:vm.usuario.rolId})">{{vm.usuario.rolNombre}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="usuario-detail.edit({id:vm.usuario.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

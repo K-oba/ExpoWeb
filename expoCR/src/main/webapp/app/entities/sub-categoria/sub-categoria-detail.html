@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span>Sub Categoria</span> {{vm.subCategoria.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.subCategoria.nombre}}</span>
+        </dd>
+        <dt><span>Tipo</span></dt>
+        <dd>
+            <span>{{vm.subCategoria.tipo}}</span>
+        </dd>
+        <dt><span>Categoria</span></dt>
+        <dd>
+            <a ui-sref="categoria-detail({id:vm.subCategoria.categoriaId})">{{vm.subCategoria.categoriaId}}</a>
+        </dd>
+        <dt><span>Brouchure</span></dt>
+        <dd>
+            <a ui-sref="brouchure-detail({id:vm.subCategoria.brouchureId})">{{vm.subCategoria.brouchureId}}</a>
+        </dd>
+        <dt><span>Click</span></dt>
+        <dd>
+            <a ui-sref="click-detail({id:vm.subCategoria.clickId})">{{vm.subCategoria.clickId}}</a>
+        </dd>
+        <dt><span>Beacon</span></dt>
+        <dd>
+            <a ui-sref="beacon-detail({id:vm.subCategoria.beaconId})">{{vm.subCategoria.beaconId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="sub-categoria-detail.edit({id:vm.subCategoria.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

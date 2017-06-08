@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "post",
+            "otherEntityName": "post",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "timeline"
+        },
+        {
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "timeline"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170606041511",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "timeline",
+    "pagination": "pager"
+}

@@ -1,0 +1,45 @@
+
+<div>
+    <h2><span>Charla</span> {{vm.charla.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.charla.nombre}}</span>
+        </dd>
+        <dt><span>Descripcion</span></dt>
+        <dd>
+            <span>{{vm.charla.descripcion}}</span>
+        </dd>
+        <dt><span>Fecha Inicio</span></dt>
+        <dd>
+            <span>{{vm.charla.fechaInicio}}</span>
+        </dd>
+        <dt><span>Fecha Fin</span></dt>
+        <dd>
+            <span>{{vm.charla.fechaFin}}</span>
+        </dd>
+        <dt><span>Exposicion</span></dt>
+        <dd>
+            <a ui-sref="exposicion-detail({id:vm.charla.exposicionId})">{{vm.charla.exposicionId}}</a>
+        </dd>
+        <dt><span>Pregunta</span></dt>
+        <dd>
+            <span ng-repeat="pregunta in vm.charla.preguntas">
+                <a ui-sref="pregunta-detail({id: pregunta.id})">{{pregunta.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="charla-detail.edit({id:vm.charla.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

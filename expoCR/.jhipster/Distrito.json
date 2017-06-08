@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "canton",
+            "otherEntityName": "canton",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "distrito"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606031808",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "distrito",
+    "pagination": "pager"
+}

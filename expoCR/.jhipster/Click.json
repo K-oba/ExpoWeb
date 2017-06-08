@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "stand",
+            "otherEntityName": "stand",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "click"
+        },
+        {
+            "relationshipName": "subCategoria",
+            "otherEntityName": "subCategoria",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "click"
+        },
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "click"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "beaconId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clientId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "coordenadas",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaHora",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606045603",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "click",
+    "pagination": "pager"
+}

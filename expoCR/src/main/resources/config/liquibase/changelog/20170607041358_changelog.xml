@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-1">
+      <addForeignKeyConstraint baseColumnNames="brouchure_id"
+                               baseTableName="sub_categoria"
+                               constraintName="FK1il1m7t9twet4fqs4o3lxgmlv"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="brouchure"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-2">
+      <addForeignKeyConstraint baseColumnNames="exposicion_id"
+                               baseTableName="charla"
+                               constraintName="FK1q196fh6dls3dop62j4w04q9v"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="exposicion"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-3">
+      <addForeignKeyConstraint baseColumnNames="brouchure_id"
+                               baseTableName="stand"
+                               constraintName="FK3xd9cvn64ya2gxx7fdd6esg25"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="brouchure"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-4">
+      <addForeignKeyConstraint baseColumnNames="charlas_id"
+                               baseTableName="charla_pregunta"
+                               constraintName="FK4dvbvibrp7tdc3xrpn61tkvne"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="charla"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-5">
+      <addForeignKeyConstraint baseColumnNames="usuario_id"
+                               baseTableName="pregunta"
+                               constraintName="FK6922779ud1ayyranna4a23d6j"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="usuario"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-6">
+      <addForeignKeyConstraint baseColumnNames="beacon_id"
+                               baseTableName="stand"
+                               constraintName="FK7os5ony3du7thgwrb81jp8bdl"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="beacon"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-7">
+      <addForeignKeyConstraint baseColumnNames="provincia_id"
+                               baseTableName="canton"
+                               constraintName="FK87ebfsh5m7718plwobtdy5u8r"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="provincia"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-8">
+      <addForeignKeyConstraint baseColumnNames="timelines_id"
+                               baseTableName="usuario_timeline"
+                               constraintName="FK8a8fpe6asvnd0i01pgcffgi58"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="timeline"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-9">
+      <addForeignKeyConstraint baseColumnNames="canton_id"
+                               baseTableName="distrito"
+                               constraintName="FK8b2850c4p0impvxrf42xvthab"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="canton"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-10">
+      <addForeignKeyConstraint baseColumnNames="exposicion_id"
+                               baseTableName="timeline"
+                               constraintName="FK8f1eiwdvsx8eraidtlr0nj4rb"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="exposicion"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-11">
+      <addForeignKeyConstraint baseColumnNames="exposicions_id"
+                               baseTableName="exposicion_amenidades"
+                               constraintName="FKadh2enre7p0yebcuvvwiovc3p"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="exposicion"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-12">
+      <addForeignKeyConstraint baseColumnNames="preguntas_id"
+                               baseTableName="charla_pregunta"
+                               constraintName="FKai2rykv1wr88b74kco4b8jxct"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="pregunta"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-13">
+      <addForeignKeyConstraint baseColumnNames="distrito_id"
+                               baseTableName="exposicion"
+                               constraintName="FKb099eyv1pbtyxbij2255pp0nl"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="distrito"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-14">
+      <addForeignKeyConstraint baseColumnNames="timeline_id"
+                               baseTableName="post"
+                               constraintName="FKbvsbmpxybs3algfvkyqwai4h9"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="timeline"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-15">
+      <addForeignKeyConstraint baseColumnNames="usuarios_id"
+                               baseTableName="usuario_timeline"
+                               constraintName="FKg04k1qc8ocuelywyokb93avxk"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="usuario"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-16">
+      <addForeignKeyConstraint baseColumnNames="stand_id"
+                               baseTableName="usuario"
+                               constraintName="FKiiohk9x0rcjwblab38b2l43xr"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="stand"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-17">
+      <addForeignKeyConstraint baseColumnNames="exposicion_id"
+                               baseTableName="pregunta"
+                               constraintName="FKjdu1h2m56a4kqxj7aph7nnuwt"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="exposicion"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-18">
+      <addForeignKeyConstraint baseColumnNames="click_id"
+                               baseTableName="exposicion"
+                               constraintName="FKn0pvgojo2lkerq8qtr6si2qs6"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="click"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-19">
+      <addForeignKeyConstraint baseColumnNames="amenidades_id"
+                               baseTableName="exposicion_amenidades"
+                               constraintName="FKnnol0fuits43eqg9jr1b2mn9x"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="amenidades"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-20">
+      <addForeignKeyConstraint baseColumnNames="exposicion_id"
+                               baseTableName="beacon"
+                               constraintName="FKoj6fj7j3poqbmst5g9g7od4y9"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="exposicion"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-21">
+      <addForeignKeyConstraint baseColumnNames="click_id"
+                               baseTableName="sub_categoria"
+                               constraintName="FKpdfd0v08ks265k36cn3vbxxe9"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="click"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-22">
+      <addForeignKeyConstraint baseColumnNames="click_id"
+                               baseTableName="stand"
+                               constraintName="FKqsi11jqea4pt68glhdots9pva"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="click"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-23">
+      <addForeignKeyConstraint baseColumnNames="categoria_id"
+                               baseTableName="sub_categoria"
+                               constraintName="FKqyd18s33yesrwpl5mvk2uswtp"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="categoria"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-24">
+      <addForeignKeyConstraint baseColumnNames="categoria_id"
+                               baseTableName="exposicion"
+                               constraintName="FKrq2k1yb3g0n6av2ximuupv4uc"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="categoria"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-25">
+      <addForeignKeyConstraint baseColumnNames="beacon_id"
+                               baseTableName="sub_categoria"
+                               constraintName="FKs9t2elmqqsgpocm1hdu9wdyog"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="beacon"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-26">
+      <dropUniqueConstraint constraintName="user_id" tableName="jhi_social_user_connection"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1496808882851-27">
+      <dropUniqueConstraint constraintName="user_id_2" tableName="jhi_social_user_connection"/>
+   </changeSet>
+</databaseChangeLog>

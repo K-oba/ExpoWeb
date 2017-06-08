@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "stand",
+            "otherEntityName": "stand",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "brouchure"
+        },
+        {
+            "relationshipName": "subCategoria",
+            "otherEntityName": "subCategoria",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "brouchure"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "urlimagen",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606024049",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "brouchure",
+    "pagination": "pager"
+}

@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span>Canton</span> {{vm.canton.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.canton.nombre}}</span>
+        </dd>
+        <dt><span>Provincia</span></dt>
+        <dd>
+            <a ui-sref="provincia-detail({id:vm.canton.provinciaId})">{{vm.canton.provinciaId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="canton-detail.edit({id:vm.canton.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

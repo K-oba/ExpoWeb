@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity SubCategoria.
+    -->
+    <changeSet id="20170606035230-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="sub_categoria"
+                                 constraintName="fk_sub_categoria_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"/>
+
+        <addForeignKeyConstraint baseColumnNames="brouchure_id"
+                                 baseTableName="sub_categoria"
+                                 constraintName="fk_sub_categoria_brouchure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="brouchure"/>
+
+        <addForeignKeyConstraint baseColumnNames="click_id"
+                                 baseTableName="sub_categoria"
+                                 constraintName="fk_sub_categoria_click_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="click"/>
+
+        <addForeignKeyConstraint baseColumnNames="beacon_id"
+                                 baseTableName="sub_categoria"
+                                 constraintName="fk_sub_categoria_beacon_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="beacon"/>
+
+    </changeSet>
+</databaseChangeLog>

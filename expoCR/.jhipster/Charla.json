@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "pregunta",
+            "otherEntityName": "pregunta",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "charla"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaInicio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fechaFin",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606035909",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "charla",
+    "pagination": "pager"
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Usuario.
+    -->
+    <changeSet id="20170606022609-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="usuarios_id"
+                                 baseTableName="usuario_timeline"
+                                 constraintName="fk_usuario_timeline_usuarios_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+        <addForeignKeyConstraint baseColumnNames="timelines_id"
+                                 baseTableName="usuario_timeline"
+                                 constraintName="fk_usuario_timeline_timelines_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="timeline"/>
+        
+        <addForeignKeyConstraint baseColumnNames="stand_id"
+                                 baseTableName="usuario"
+                                 constraintName="fk_usuario_stand_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="stand"/>
+
+        <addForeignKeyConstraint baseColumnNames="rol_id"
+                                 baseTableName="usuario"
+                                 constraintName="fk_usuario_rol_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="rol"/>
+
+    </changeSet>
+</databaseChangeLog>

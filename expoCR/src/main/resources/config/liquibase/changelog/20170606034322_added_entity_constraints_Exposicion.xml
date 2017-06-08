@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Exposicion.
+    -->
+    <changeSet id="20170606034322-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="distrito_id"
+                                 baseTableName="exposicion"
+                                 constraintName="fk_exposicion_distrito_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="distrito"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="exposicion"
+                                 constraintName="fk_exposicion_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"/>
+
+        <addForeignKeyConstraint baseColumnNames="exposicions_id"
+                                 baseTableName="exposicion_amenidades"
+                                 constraintName="fk_exposicion_amenidades_exposicions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exposicion"/>
+        <addForeignKeyConstraint baseColumnNames="amenidades_id"
+                                 baseTableName="exposicion_amenidades"
+                                 constraintName="fk_exposicion_amenidades_amenidades_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="amenidades"/>
+        
+        <addForeignKeyConstraint baseColumnNames="click_id"
+                                 baseTableName="exposicion"
+                                 constraintName="fk_exposicion_click_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="click"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "stand",
+            "otherEntityName": "stand",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "beacon"
+        },
+        {
+            "relationshipName": "subCategoria",
+            "otherEntityName": "subCategoria",
+            "relationshipType": "one-to-one",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "beacon"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "uuid",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606044505",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "beacon",
+    "pagination": "pager"
+}

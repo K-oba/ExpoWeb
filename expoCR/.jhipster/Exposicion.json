@@ -1,0 +1,89 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "distrito",
+            "otherEntityName": "distrito",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "charla",
+            "otherEntityName": "charla",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "exposicion"
+        },
+        {
+            "relationshipName": "amenidades",
+            "otherEntityName": "amenidades",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "exposicion"
+        },
+        {
+            "relationshipName": "beacon",
+            "otherEntityName": "beacon",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "exposicion"
+        },
+        {
+            "relationshipName": "timeline",
+            "otherEntityName": "timeline",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "exposicion"
+        },
+        {
+            "relationshipName": "click",
+            "otherEntityName": "click",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "exposicion"
+        },
+        {
+            "relationshipName": "pregunta",
+            "otherEntityName": "pregunta",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "exposicion"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estadoExpo",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "fechaInicio",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "fechaFin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "coordenadas",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606034322",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "exposicion",
+    "pagination": "pager"
+}

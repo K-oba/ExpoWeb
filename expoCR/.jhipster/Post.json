@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "timeline",
+            "otherEntityName": "timeline",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "imagen",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "mensaje",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170606041712",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "post",
+    "pagination": "pager"
+}
