@@ -25,6 +25,8 @@ public class UsuarioService {
 
     private final UsuarioMapper usuarioMapper;
 
+    private  static  final  long VISITANTE = 2;
+
     public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
@@ -38,6 +40,8 @@ public class UsuarioService {
      */
     public UsuarioDTO save(UsuarioDTO usuarioDTO) {
         log.debug("Request to save Usuario : {}", usuarioDTO);
+
+        usuarioDTO.setRolId(usuarioDTO.getRolId() != null ? usuarioDTO.getRolId() : VISITANTE);
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
         usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toDto(usuario);
@@ -66,6 +70,13 @@ public class UsuarioService {
     public UsuarioDTO findOne(Long id) {
         log.debug("Request to get Usuario : {}", id);
         Usuario usuario = usuarioRepository.findOneWithEagerRelationships(id);
+        return usuarioMapper.toDto(usuario);
+    }
+
+    @Transactional(readOnly = true)
+    public UsuarioDTO findByEmail(String email){
+        log.debug("Request to get Usuario by email : {}", email);
+        Usuario usuario = usuarioRepository.findByCorreo(email);
         return usuarioMapper.toDto(usuario);
     }
 
