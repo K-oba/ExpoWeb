@@ -21,7 +21,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-
+import com.kaoba.expo.service.MailService;
 /**
  * REST controller for managing Usuario.
  */
@@ -34,9 +34,12 @@ public class UsuarioResource {
     private static final String ENTITY_NAME = "usuario";
 
     private final UsuarioService usuarioService;
+    
+    private final MailService mailService;
 
-    public UsuarioResource(UsuarioService usuarioService) {
+    public UsuarioResource(UsuarioService usuarioService, MailService mailService) {
         this.usuarioService = usuarioService;
+        this.mailService = mailService;
     }
 
     /**
@@ -110,17 +113,32 @@ public class UsuarioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 
-    /**
-     * DELETE  /usuarios/:id : delete the "id" usuario.
+//    /**
+//     * DELETE  /usuarios/:id : delete the "id" usuario.
+//     *
+//     * @param id the id of the usuarioDTO to delete
+//     * @return the ResponseEntity with status 200 (OK)
+//     */
+//    @DeleteMapping("/usuarios/{id}")
+//    @Timed
+//    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
+//        log.debug("REST request to delete Usuario : {}", id);
+//        usuarioService.delete(id);
+//        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+//    }
+        /**
+     * GET  /usuarios/:email : find user by id.
      *
-     * @param id the id of the usuarioDTO to delete
+     * @param email the id of the usuarioDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/usuarios/{id}")
+    @PostMapping("/requestPasswordReset")
     @Timed
-    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-        log.debug("REST request to delete Usuario : {}", id);
-        usuarioService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    public ResponseEntity<UsuarioDTO> requestPasswordReset(@RequestBody String email) {
+        log.debug("Email desde el post : {}",email);
+        UsuarioDTO usuario =  usuarioService.requestPasswordReset(email);
+
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
+        //return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

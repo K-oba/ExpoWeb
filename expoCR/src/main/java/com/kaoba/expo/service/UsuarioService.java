@@ -24,10 +24,13 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
     private final UsuarioMapper usuarioMapper;
+    
+    private final MailService mailService;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, MailService mailService) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
+        this.mailService = mailService;
     }
 
     /**
@@ -78,4 +81,24 @@ public class UsuarioService {
         log.debug("Request to delete Usuario : {}", id);
         usuarioRepository.delete(id);
     }
+    
+    /**
+     *  Get one usuario by id.
+     *
+     *  @param email the email of the entity
+     *  @return the entity
+     */
+    @Transactional(readOnly = true)
+
+    public UsuarioDTO requestPasswordReset(String correo) {
+        log.debug("Correo del usuario : {}", correo);
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        usuario.setCorreo("valeram96@gmail.com");
+        log.debug("usuario a enviar correo : {}", usuario);
+        if(usuario!=null){
+            mailService.sendPasswordResetMail(usuario);
+        }
+        return usuarioMapper.toDto(usuario);
+    }
+    
 }
