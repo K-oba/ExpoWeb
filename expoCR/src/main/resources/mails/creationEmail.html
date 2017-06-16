@@ -6,15 +6,16 @@
         <link rel="shortcut icon" href="${baseUrl}/favicon.ico" />
     </head>
     <body>
-        <p th:text="#{email.activation.greeting(${user.login})}">
+        <p th:text="#{email.activation.greeting(${})}">
             Dear
         </p>
         <p th:text="#{email.creation.text1}">
             Your JHipster account has been created, please click on the URL below to access it:
         </p>
         <p>
-          <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}"
-             th:text="|${user.login}|">login</a>
+          <!-- <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}"
+             th:text="|${}|"></a> -->
+             <a></a>
         </p>
         <p>
             <span th:text="#{email.activation.text2}">Regards, </span>

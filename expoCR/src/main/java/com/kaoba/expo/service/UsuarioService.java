@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 /**
@@ -25,11 +26,17 @@ public class UsuarioService {
 
     private final UsuarioMapper usuarioMapper;
 
-    private  static  final  long VISITANTE = 2;
+    private final MailService mailService;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
+    private  static  final  long VISITANTE = 2;
+    
+    private final PasswordEncoder passwordEncoder;
+
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, MailService mailService,PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.usuarioMapper = usuarioMapper;
+        this.mailService = mailService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -43,6 +50,8 @@ public class UsuarioService {
 
         usuarioDTO.setRolId(usuarioDTO.getRolId() != null ? usuarioDTO.getRolId() : VISITANTE);
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        String encriptPass = passwordEncoder.encode(usuario.getClave());
+        usuario.setClave(encriptPass);
         usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toDto(usuario);
     }
@@ -89,4 +98,36 @@ public class UsuarioService {
         log.debug("Request to delete Usuario : {}", id);
         usuarioRepository.delete(id);
     }
+
+    /**
+     *  Get one usuario by id.
+     *
+     *  @param email the email of the entity
+     *  @return the entity
+     */
+    @Transactional(readOnly = true)
+
+    public UsuarioDTO requestPasswordReset(String correo) {
+        log.debug("Correo del usuario : {}", correo);
+        Usuario usuario = usuarioRepository.findByCorreo(correo);
+        //usuario.setCorreo("valeram96@gmail.com");
+        log.debug("usuario a enviar correo : {}", usuario);
+        if(usuario!=null){
+            mailService.sendPasswordResetMail(usuario);
+        }
+        return usuarioMapper.toDto(usuario);
+    }
+
+    public UsuarioDTO changePassword(UsuarioDTO usuariodto) {
+            Long id = usuariodto.getId();
+            String password = usuariodto.getClave();
+
+            Usuario usuario = usuarioMapper.toEntity(usuariodto);
+            usuario = usuarioRepository.findOneWithEagerRelationships(id);
+            usuario.setClave(passwordEncoder.encode(password));
+            usuarioRepository.save(usuario);
+            log.debug("Correo del usuario : {}", usuario);
+            return usuarioMapper.toDto(usuario);
+    }
+
 }
