@@ -34,6 +34,7 @@ public class UsuarioResource {
     private final Logger log = LoggerFactory.getLogger(UsuarioResource.class);
 
     private static final String ENTITY_NAME = "usuario";
+    private static final String EMAIL_EXISTS = "El correo electronico ya esta en uso.";
 
     private final UsuarioService usuarioService;
     
@@ -57,11 +58,15 @@ public class UsuarioResource {
         log.debug("REST request to save Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new usuario cannot already have an ID")).body(null);
+        }else if(usuarioService.findByEmail(usuarioDTO.getCorreo()) != null){
+            return  ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", EMAIL_EXISTS))
+                    .body(null);
+        }else{
+            UsuarioDTO result = usuarioService.save(usuarioDTO);
+            return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
         }
-        UsuarioDTO result = usuarioService.save(usuarioDTO);
-        return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
     }
 
     /**

@@ -24,8 +24,10 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
 
     private final UsuarioMapper usuarioMapper;
-    
+
     private final MailService mailService;
+
+    private  static  final  long VISITANTE = 2;
 
     public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, MailService mailService) {
         this.usuarioRepository = usuarioRepository;
@@ -41,6 +43,8 @@ public class UsuarioService {
      */
     public UsuarioDTO save(UsuarioDTO usuarioDTO) {
         log.debug("Request to save Usuario : {}", usuarioDTO);
+
+        usuarioDTO.setRolId(usuarioDTO.getRolId() != null ? usuarioDTO.getRolId() : VISITANTE);
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
         usuario = usuarioRepository.save(usuario);
         return usuarioMapper.toDto(usuario);
@@ -72,6 +76,13 @@ public class UsuarioService {
         return usuarioMapper.toDto(usuario);
     }
 
+    @Transactional(readOnly = true)
+    public UsuarioDTO findByEmail(String email){
+        log.debug("Request to get Usuario by email : {}", email);
+        Usuario usuario = usuarioRepository.findByCorreo(email);
+        return usuarioMapper.toDto(usuario);
+    }
+
     /**
      *  Delete the  usuario by id.
      *
@@ -81,7 +92,7 @@ public class UsuarioService {
         log.debug("Request to delete Usuario : {}", id);
         usuarioRepository.delete(id);
     }
-    
+
     /**
      *  Get one usuario by id.
      *
@@ -100,24 +111,17 @@ public class UsuarioService {
         }
         return usuarioMapper.toDto(usuario);
     }
-    
+
     public UsuarioDTO changePassword(UsuarioDTO usuariodto) {
-//        usuarioRepository.findOneById(usuariodto.getId()).ifPresent(user -> {
-//            String encryptedPassword = passwordEncoder.encode(password);
-//            user.setPassword(encryptedPassword);
-//            log.debug("Changed password for User: {}", user);
-//        });
-      
             Long id = usuariodto.getId();
             String password = usuariodto.getClave();
-            
+
             Usuario usuario = usuarioMapper.toEntity(usuariodto);
             usuario = usuarioRepository.findOneWithEagerRelationships(id);
             usuario.setClave(password);
             usuarioRepository.save(usuario);
             log.debug("Correo del usuario : {}", usuario);
             return usuarioMapper.toDto(usuario);
-        
     }
-    
+
 }
