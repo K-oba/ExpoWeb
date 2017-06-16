@@ -12,6 +12,13 @@
 
         vm.usuario = entity;
         vm.previousState = previousState.name;
+        vm.isVisble = false;
+
+        if(vm.usuario.standId == null){
+            vm.isVisble = false;
+        }else{
+            vm.isVisble = true;
+        }
 
         var unsubscribe = $rootScope.$on('expoCrApp:usuarioUpdate', function(event, result) {
             vm.usuario = result;

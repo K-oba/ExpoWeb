@@ -80,7 +80,7 @@ public class AccountResource {
                             managedUserVM.getEmail().toLowerCase(), managedUserVM.getImageUrl(),
                             managedUserVM.getLangKey());
 
-                    mailService.sendActivationEmail(user);
+                    //mailService.sendActivationEmail(user);
                     return new ResponseEntity<>(HttpStatus.CREATED);
                 })
         );
@@ -221,7 +221,7 @@ public class AccountResource {
     public ResponseEntity requestPasswordReset(@RequestBody String mail) {
         return userService.requestPasswordReset(mail)
             .map(user -> {
-                mailService.sendPasswordResetMail(user);
+                //mailService.sendPasswordResetMail(user);
                 return new ResponseEntity<>("email was sent", HttpStatus.OK);
             }).orElse(new ResponseEntity<>("email address not registered", HttpStatus.BAD_REQUEST));
     }

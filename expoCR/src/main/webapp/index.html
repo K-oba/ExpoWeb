@@ -14,23 +14,32 @@
     <link rel="stylesheet" href="content/css/vendor.css">
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
-    <link rel="stylesheet" href="content/css/main.css">
+    <!-- <link rel="stylesheet" href="content/css/main.css"> -->
     <!-- endbuild -->
     <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-blue.min.css" />
+    <link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css">
+    <script src="/bower_components/material-design-lite/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body ng-app="expoCrApp" ng-strict-di>
+<style>
+  .demo-layout-transparent {
+    background: url('content/images/201612-beacons-forma-comprar-beretail-00.jpg') center / cover;
+  }
+</style>
+<body ng-app="expoCrApp" ng-strict-di class="demo-layout-transparent">
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <page-ribbon></page-ribbon>
+    <!-- <page-ribbon></page-ribbon> -->
     <div ui-view="navbar" ng-cloak></div>
-    <div class="container">
-        <div class="well" ui-view="content">
+    <div class="container mdl-color--white" layout-align ="center center">
+        <div class="mdl-color--white" ui-view="content">
             <!-- Angular views -->
         </div>
 
         <div class="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
+            <!-- <p data-translate="footer">This is your footer</p> -->
         </div>
     </div>
 

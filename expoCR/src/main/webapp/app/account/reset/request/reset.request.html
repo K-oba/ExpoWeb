@@ -3,7 +3,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h1>Reset your password</h1>
 
-            <div class="alert alert-danger" ng-show="vm.errorEmailNotExists">
+            <div class="alert alert-danger" ng-show="vm.validEmail">
                 <strong>Email address isn't registered!</strong> Please check and try again.
             </div>
 
@@ -15,11 +15,11 @@
                 <p>Check your emails for details on how to reset your password.</p>
             </div>
 
-            <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.requestReset()" show-validation>
+            <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.requestReset(email)" show-validation>
                 <div class="form-group">
                     <label class="control-label" for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Your email"
-                           ng-model="vm.resetAccount.email" ng-minlength=5 ng-maxlength=100 required>
+                           ng-model="email" ng-minlength=5 ng-maxlength=100 required>
                     <div ng-show="form.email.$dirty && form.email.$invalid">
                         <p class="help-block"
                            ng-show="form.email.$error.required">
