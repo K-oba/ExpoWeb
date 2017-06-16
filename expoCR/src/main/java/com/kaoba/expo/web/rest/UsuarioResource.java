@@ -22,6 +22,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import com.kaoba.expo.service.MailService;
+import com.kaoba.expo.web.rest.vm.ManagedUserVM;
+import org.apache.commons.lang3.StringUtils;
 /**
  * REST controller for managing Usuario.
  */
@@ -140,5 +142,31 @@ public class UsuarioResource {
 
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
         //return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
+     /**
+     * POST  /account/changePassword : change the current user's password
+     *
+     * @param password the new password
+     * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
+     */
+    @PostMapping(path = "/changePassword")
+    @Timed
+            
+    public ResponseEntity changePassword(@RequestBody UsuarioDTO usuario) {
+        if (!checkPasswordLength(usuario.getClave())) {
+            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+        }else{
+            UsuarioDTO usuarioRequest = usuarioService.changePassword(usuario);
+            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioRequest));
+        }
+        //usuarioService.changePassword(password);
+        //return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    private boolean checkPasswordLength(String password) {
+        return !StringUtils.isEmpty(password) &&
+            password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&
+            password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH;
     }
 }

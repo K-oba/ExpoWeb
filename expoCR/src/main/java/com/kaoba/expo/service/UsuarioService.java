@@ -101,4 +101,23 @@ public class UsuarioService {
         return usuarioMapper.toDto(usuario);
     }
     
+    public UsuarioDTO changePassword(UsuarioDTO usuariodto) {
+//        usuarioRepository.findOneById(usuariodto.getId()).ifPresent(user -> {
+//            String encryptedPassword = passwordEncoder.encode(password);
+//            user.setPassword(encryptedPassword);
+//            log.debug("Changed password for User: {}", user);
+//        });
+      
+            Long id = usuariodto.getId();
+            String password = usuariodto.getClave();
+            
+            Usuario usuario = usuarioMapper.toEntity(usuariodto);
+            usuario = usuarioRepository.findOneWithEagerRelationships(id);
+            usuario.setClave(password);
+            usuarioRepository.save(usuario);
+            log.debug("Correo del usuario : {}", usuario);
+            return usuarioMapper.toDto(usuario);
+        
+    }
+    
 }
