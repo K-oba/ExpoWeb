@@ -29,6 +29,7 @@
             try {
               $http(req).then(function(response){
                   //console.log(response.data);
+                  vm.success = 'OK';
               },function(error){
                   console.log(error);
                   vm.validEmail = true;

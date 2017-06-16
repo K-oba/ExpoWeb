@@ -23,7 +23,7 @@
 
         function finishReset() {
           var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            console.log(value);
+            //console.log(value);
             vm.userID = value;
           });
             //match = url.match(/userID=(\d+)/)
@@ -33,7 +33,7 @@
             if (vm.resetAccount.password !== vm.confirmPassword) {
                  vm.doNotMatch = 'ERROR';
              } else {
-               console.log('hey');
+               //console.log('hey');
                var requestData ={
                  "clave": vm.confirmPassword,
                  "correo": "string",
@@ -56,12 +56,12 @@
                };
 
                  $http(req).then(function(response){
-                     console.log(response.data);
+                     //console.log(response.data);
                      if(response.data.id !== 0){
                        vm.success = 'OK';
                      }
                  },function(error){
-                     console.log(error);
+                     //console.log(error);
                      vm.validEmail = true;
                  });
 
