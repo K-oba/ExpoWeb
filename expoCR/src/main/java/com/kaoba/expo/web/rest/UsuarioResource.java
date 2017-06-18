@@ -38,11 +38,11 @@ public class UsuarioResource {
 
     private final UsuarioService usuarioService;
     
-    private final MailService mailService;
+    
 
-    public UsuarioResource(UsuarioService usuarioService, MailService mailService) {
+    public UsuarioResource(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
-        this.mailService = mailService;
+    
     }
 
     /**
