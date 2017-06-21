@@ -22,6 +22,7 @@
         $timeout(function (){angular.element('#password').focus();});
 
         function finishReset() {
+
           var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
             //console.log(value);
             vm.userID = value;
@@ -37,8 +38,8 @@
                var requestData ={
                  "clave": vm.confirmPassword,
                  "correo": "string",
-                 "id": vm.userID,
-                 "nombre": "string",
+                 "id": 0,
+                 "nombre": vm.userID,
                  "rolId": 0,
                  "rolNombre": "string",
                  "standId": 0,

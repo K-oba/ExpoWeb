@@ -13,7 +13,7 @@
             template: '<div id="strength">' +
                 '<small>Password strength:</small>' +
                 '<ul id="strengthBar">' +
-                '<li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li><li class="point"></li>' +
+                '<li class="point">Too Short</li><li class="point">Very Weak</li><li class="point">Weak</li><li class="point">Strong</li><li class="point">Very Strong</li>' +
                 '</ul>' +
                 '</div>',
             scope: {
@@ -54,7 +54,7 @@
                     _force = (_passedMatches === 1) ? Math.min(_force, 10) : _force;
                     _force = (_passedMatches === 2) ? Math.min(_force, 20) : _force;
                     _force = (_passedMatches === 3) ? Math.min(_force, 40) : _force;
-
+                    console.log(_force);
                     return _force;
 
                 },
