@@ -28,7 +28,7 @@ public class UsuarioService {
 
     private final MailService mailService;
 
-    private  static  final  long VISITANTE = 2;
+    private  static  final  long VISITANTE = 4;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -82,13 +82,6 @@ public class UsuarioService {
         return usuarioMapper.toDto(usuario);
     }
 
-    /**
-     *  Get one usuario by id.
-     *
-     *  @param email the id of the entity
-     *  @return the entity
-     */
-
     @Transactional(readOnly = true)
     public UsuarioDTO findByEmail(String email){
         log.debug("Request to get Usuario by email : {}", email);
@@ -109,7 +102,7 @@ public class UsuarioService {
     /**
      *  Get one usuario by id.
      *
-     *  @param correo the email of the entity
+     *  @param email the email of the entity
      *  @return the entity
      */
     @Transactional(readOnly = true)
