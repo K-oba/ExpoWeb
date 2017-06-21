@@ -130,15 +130,15 @@ public class UsuarioService {
          String idEncriptado = usuariodto.getNombre();
          String idDesencriptado = Desencriptar(idEncriptado);
          log.debug("ID DESENCRIPTADO : {}", idDesencriptado);
-         //Long cryptLong = Long.parseLong(idDesencriptado);
-         //log.debug("ID DESENCRIPTADO : {}", idDesencriptado);
+         Long cryptLong = Long.parseLong(idDesencriptado);
+         log.debug("ID DESENCRIPTADO : {}", idDesencriptado);
             //Long id = usuariodto.getId();
             String password = usuariodto.getClave();
-          
+            
             Usuario usuario = usuarioMapper.toEntity(usuariodto);
-//            usuario = usuarioRepository.findOneWithEagerRelationships(cryptLong);
-//            usuario.setClave(passwordEncoder.encode(password));
-//            usuarioRepository.save(usuario);
+            usuario = usuarioRepository.findOneWithEagerRelationships(cryptLong);
+            usuario.setClave(passwordEncoder.encode(password));
+            usuarioRepository.save(usuario);
             //log.debug("Correo del usuario : {}", usuario);
             return usuarioMapper.toDto(usuario);
     }
@@ -151,14 +151,14 @@ public class UsuarioService {
         try {
  
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
+            byte[] digestOfPassword = md.digest(secretKey.getBytes("ASCII"));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
  
             SecretKey key = new SecretKeySpec(keyBytes, "DESede");
             Cipher cipher = Cipher.getInstance("DESede");
             cipher.init(Cipher.ENCRYPT_MODE, key);
  
-            byte[] plainTextBytes = texto.getBytes("utf-8");
+            byte[] plainTextBytes = texto.getBytes("ASCII");
             byte[] buf = cipher.doFinal(plainTextBytes);
             byte[] base64Bytes = Base64.encodeBase64(buf);
             base64EncryptedString = new String(base64Bytes);
@@ -173,9 +173,9 @@ public class UsuarioService {
         String base64EncryptedString = "";
  
         try {
-            byte[] message = Base64.decodeBase64(textoEncriptado.getBytes("utf-8"));
+            byte[] message = Base64.decodeBase64(textoEncriptado.getBytes("ASCII"));
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
+            byte[] digestOfPassword = md.digest(secretKey.getBytes("ASCII"));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
             SecretKey key = new SecretKeySpec(keyBytes, "DESede");
  

@@ -25,7 +25,8 @@
 
           var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
             //console.log(value);
-            vm.userID = value;
+            vm.userID =   decodeURIComponent(value.replace(/\+/g, '%20'));
+//            console.log(vm.userID);
           });
             //match = url.match(/userID=(\d+)/)
             //console.log(parts);
