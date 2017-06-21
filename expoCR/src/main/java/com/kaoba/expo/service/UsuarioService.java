@@ -130,4 +130,8 @@ public class UsuarioService {
             return usuarioMapper.toDto(usuario);
     }
 
+	public boolean checkUserPass(String clave, String clave2) {
+		return passwordEncoder.matches(clave2, clave);
+	}
+
 }
