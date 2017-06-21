@@ -1,7 +1,9 @@
 package com.kaoba.expo.security;
 
 import com.kaoba.expo.domain.User;
+import com.kaoba.expo.domain.Usuario;
 import com.kaoba.expo.repository.UserRepository;
+import com.kaoba.expo.repository.UsuarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,9 +27,16 @@ public class DomainUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+//    private final UsuarioRepository usuarioRepository;
+
     public DomainUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+//    public DomainUserDetailsService(UsuarioRepository usuarioRepository,boolean usuario){
+//        this.usuarioRepository = usuarioRepository;
+//        this.userRepository = null;
+//    }
 
     @Override
     @Transactional
@@ -35,6 +44,7 @@ public class DomainUserDetailsService implements UserDetailsService {
         log.debug("Authenticating {}", login);
         String lowercaseLogin = login.toLowerCase(Locale.ENGLISH);
         Optional<User> userFromDatabase = userRepository.findOneWithAuthoritiesByLogin(lowercaseLogin);
+
         return userFromDatabase.map(user -> {
             if (!user.getActivated()) {
                 throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
@@ -48,4 +58,26 @@ public class DomainUserDetailsService implements UserDetailsService {
         }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
         "database"));
     }
+
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(final String login) {
+//        log.debug("Authenticating {}", login);
+//        String lowercaseLogin = login.toLowerCase(Locale.ENGLISH);
+//
+//        Optional<Usuario> usuarioFromDatabase = usuarioRepository.findOneByEmail(lowercaseLogin);
+//
+//        return usuarioFromDatabase.map(usuario -> {
+//            if (!user.getActivated()) {
+//                throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
+//            }
+//            List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
+//                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+//                .collect(Collectors.toList());
+//            return new org.springframework.security.core.userdetails.User(lowercaseLogin,
+//                user.getPassword(),
+//                grantedAuthorities);
+//        }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the " +
+//            "database"));
+//    }
 }

@@ -25,27 +25,28 @@ spring:
     jackson:
         serialization.indent_output: true
     datasource:
-        # type: com.zaxxer.hikari.HikariDataSource
-        # url: jdbc:mysql://expotech.c4s7xosjuktx.us-east-1.rds.amazonaws.com:3306/expoCR?useUnicode=true&characterEncoding=utf8&useSSL=false
-        # username: kaoba
-        # password: 4Mb-hES-nto-anb
-        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        url: jdbc:mysql://localhost:3306/expo
-        databaseName:
-        serverName: localhost
-        username: root
-        password: 
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
-
-        hikari:
+         type: com.zaxxer.hikari.HikariDataSource
+         url: jdbc:mysql://expotech.c4s7xosjuktx.us-east-1.rds.amazonaws.com:3306/expoCR?useUnicode=true&characterEncoding=utf8&useSSL=false
+         username: kaoba
+         password: 4Mb-hES-nto-anb
+    hikari:
             data-source-properties:
                 cachePrepStmts: true
                 prepStmtCacheSize: 250
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
+#        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+#        url: jdbc:mysql://localhost:3306/expo
+#        databaseName:
+#        serverName: localhost
+#        username: root
+#        password:
+#        cachePrepStmts: true
+#        prepStmtCacheSize: 250
+#        prepStmtCacheSqlLimit: 2048
+#        useServerPrepStmts: true
+
+
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL

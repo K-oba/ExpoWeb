@@ -37,7 +37,7 @@ public class UsuarioResource {
     private static final String EMAIL_EXISTS = "El correo electronico ya esta en uso.";
 
     private final UsuarioService usuarioService;
-    
+
     private final MailService mailService;
 
     public UsuarioResource(UsuarioService usuarioService, MailService mailService) {
@@ -107,17 +107,17 @@ public class UsuarioResource {
     }
 
     /**
-     * GET  /usuarios/:id : get the "id" usuario.
-     *
-     * @param id the id of the usuarioDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the usuarioDTO, or with status 404 (Not Found)
-     */
-    @GetMapping("/usuarios/{id}")
-    @Timed
-    public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable Long id) {
-        log.debug("REST request to get Usuario : {}", id);
-        UsuarioDTO usuarioDTO = usuarioService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+         * GET  /usuarios/:id : get the "id" usuario.
+         *
+         * @param id the id of the usuarioDTO to retrieve
+         * @return the ResponseEntity with status 200 (OK) and with body the usuarioDTO, or with status 404 (Not Found)
+         */
+        @GetMapping("/usuarios/{id}")
+        @Timed
+        public ResponseEntity<UsuarioDTO> getUsuario(@PathVariable Long id) {
+            log.debug("REST request to get Usuario : {}", id);
+            UsuarioDTO usuarioDTO = usuarioService.findOne(id);
+            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 
 //    /**
@@ -148,16 +148,16 @@ public class UsuarioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
         //return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
+
      /**
      * POST  /account/changePassword : change the current user's password
      *
-     * @param password the new password
+     * @param usuario the new password
      * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
      */
     @PostMapping(path = "/changePassword")
     @Timed
-            
+
     public ResponseEntity changePassword(@RequestBody UsuarioDTO usuario) {
         if (!checkPasswordLength(usuario.getClave())) {
             return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
@@ -168,10 +168,38 @@ public class UsuarioResource {
         //usuarioService.changePassword(password);
         //return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
     private boolean checkPasswordLength(String password) {
         return !StringUtils.isEmpty(password) &&
             password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&
             password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH;
+    }
+
+    /**
+     * POST  /usuarios/:correo : get the "correo" usuario.
+     *
+     * @param correo the mail of the usuarioDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the usuarioDTO, or with status 404 (Not Found)
+     */
+    @PostMapping("/usuarios/{correo}")
+    @Timed
+    public ResponseEntity<UsuarioDTO> getUsuario(@RequestBody String correo) {
+        log.debug("REST request to get Usuario : {}", correo);
+        UsuarioDTO usuarioDTO = usuarioService.findByEmail(correo);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
+    }
+
+    @PostMapping("/usuarios/login")
+    @Timed
+    public ResponseEntity<UsuarioDTO> logIn(@RequestParam String correo, @RequestParam String clave) {
+        log.debug("REST request to log in : {}", correo);
+        UsuarioDTO usuarioDTO = usuarioService.findByEmail(correo);
+        System.out.println(correo);
+        if (usuarioDTO == null){
+            usuarioDTO = new UsuarioDTO();
+            usuarioDTO.setNombre("Usuario no existe");
+        }
+
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 }
