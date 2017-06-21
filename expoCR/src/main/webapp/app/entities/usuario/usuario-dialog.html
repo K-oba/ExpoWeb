@@ -14,26 +14,26 @@
             </div>
 
             <div class="alert alert-danger" ng-show="vm.doNotMatch">
-                La contraseña y la confirmación no coinciden!
+                Password and confirmation do not match
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+    <form name="editForm" role="form" novalidate ng-submit="vm.save()">
 
         <div class="form-group">
-            <label class="control-label" for="field_nombre">Nombre</label>
+            <label class="control-label" for="field_nombre">Name</label>
             <input type="text" required class="form-control" name="nombre" id="field_nombre"
                     ng-model="vm.usuario.nombre"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_correo">Correo</label>
+            <label class="control-label" for="field_correo">Email</label>
             <input type="email" required class="form-control" name="correo" id="field_correo"
                     ng-model="vm.usuario.correo"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_clave">Clave</label>
+            <label class="control-label" for="field_clave">Password</label>
             <input type="password" ng-blur="showmsg = false" ng-focus="showmsg = true"  required ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" ng-minlength="4" ng-maxlength=50 class="form-control" name="clave" id="field_clave"
                     ng-model="vm.usuario.clave"
                     />
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label" for="confirm_password">Confirmación</label>
+            <label class="control-label" for="confirm_password">Confirmation</label>
             <input type="password" class="form-control" ng-minlength="4" ng-maxlength=50 required name="confirmPassword" id="confirm_password"
                    ng-model="vm.confirmPassword"/>
             <div ng-show="editForm.confirm_password.$dirty && editForm.confirm_password.$invalid">
@@ -76,12 +76,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="field_rol">Rol</label>
-            <select class="form-control" id="field_rol" required name="rol" ng-model="vm.usuario.rolId" ng-options="rol.id as rol.nombre for rol in vm.rols | filter:rol.id=1" >
-                <option value="" selected hidden />
-            </select>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="field_rol">Rol</label>-->
+            <!--<select class="form-control" id="field_rol" required name="rol" ng-model="vm.usuario.rolId" ng-options="rol.id as rol.nombre for rol in vm.rols | filter:rol.id=1" >-->
+            <!--</select>-->
+        <!--</div>-->
 
     <!--<div class="form-group">
         <label for="field_timeline">Timeline</label>

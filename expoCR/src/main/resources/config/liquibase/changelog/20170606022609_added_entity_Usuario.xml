@@ -42,7 +42,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
         <createTable tableName="usuario_timeline">
             <column name="timelines_id" type="bigint">
                 <constraints nullable="false"/>
@@ -53,6 +53,13 @@
         </createTable>
 
         <addPrimaryKey columnNames="usuarios_id, timelines_id" tableName="usuario_timeline"/>
-        
+
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/usuarios.csv"
+                  separator=";"
+                  tableName="usuario">
+        </loadData>
+
+
     </changeSet>
 </databaseChangeLog>
