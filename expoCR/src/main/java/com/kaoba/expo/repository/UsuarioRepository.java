@@ -20,4 +20,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     @Query("select usuario from Usuario usuario left join fetch usuario.timelines where usuario.id =:id")
     Usuario findOneWithEagerRelationships(@Param("id") Long id);
 
+    Usuario findByCorreo(@Param("correo") String correo);
+
 }

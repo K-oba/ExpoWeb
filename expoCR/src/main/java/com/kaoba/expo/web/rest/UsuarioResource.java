@@ -21,7 +21,9 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
-
+import com.kaoba.expo.service.MailService;
+import com.kaoba.expo.web.rest.vm.ManagedUserVM;
+import org.apache.commons.lang3.StringUtils;
 /**
  * REST controller for managing Usuario.
  */
@@ -32,11 +34,15 @@ public class UsuarioResource {
     private final Logger log = LoggerFactory.getLogger(UsuarioResource.class);
 
     private static final String ENTITY_NAME = "usuario";
+    private static final String EMAIL_EXISTS = "El correo electronico ya esta en uso.";
 
     private final UsuarioService usuarioService;
+    
+    private final MailService mailService;
 
-    public UsuarioResource(UsuarioService usuarioService) {
+    public UsuarioResource(UsuarioService usuarioService, MailService mailService) {
         this.usuarioService = usuarioService;
+        this.mailService = mailService;
     }
 
     /**
@@ -52,11 +58,15 @@ public class UsuarioResource {
         log.debug("REST request to save Usuario : {}", usuarioDTO);
         if (usuarioDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new usuario cannot already have an ID")).body(null);
+        }else if(usuarioService.findByEmail(usuarioDTO.getCorreo()) != null){
+            return  ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "emailexists", EMAIL_EXISTS))
+                    .body(null);
+        }else{
+            UsuarioDTO result = usuarioService.save(usuarioDTO);
+            return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
         }
-        UsuarioDTO result = usuarioService.save(usuarioDTO);
-        return ResponseEntity.created(new URI("/api/usuarios/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -110,17 +120,58 @@ public class UsuarioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 
-    /**
-     * DELETE  /usuarios/:id : delete the "id" usuario.
+//    /**
+//     * DELETE  /usuarios/:id : delete the "id" usuario.
+//     *
+//     * @param id the id of the usuarioDTO to delete
+//     * @return the ResponseEntity with status 200 (OK)
+//     */
+//    @DeleteMapping("/usuarios/{id}")
+//    @Timed
+//    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
+//        log.debug("REST request to delete Usuario : {}", id);
+//        usuarioService.delete(id);
+//        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+//    }
+        /**
+     * GET  /usuarios/:email : find user by id.
      *
-     * @param id the id of the usuarioDTO to delete
+     * @param email the id of the usuarioDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
-    @DeleteMapping("/usuarios/{id}")
+    @PostMapping("/requestPasswordReset")
     @Timed
-    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-        log.debug("REST request to delete Usuario : {}", id);
-        usuarioService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    public ResponseEntity<UsuarioDTO> requestPasswordReset(@RequestBody String email) {
+        log.debug("Email desde el post : {}",email);
+        UsuarioDTO usuario =  usuarioService.requestPasswordReset(email);
+
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
+        //return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
+     /**
+     * POST  /account/changePassword : change the current user's password
+     *
+     * @param password the new password
+     * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
+     */
+    @PostMapping(path = "/changePassword")
+    @Timed
+            
+    public ResponseEntity changePassword(@RequestBody UsuarioDTO usuario) {
+        if (!checkPasswordLength(usuario.getClave())) {
+            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+        }else{
+            UsuarioDTO usuarioRequest = usuarioService.changePassword(usuario);
+            return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioRequest));
+        }
+        //usuarioService.changePassword(password);
+        //return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    private boolean checkPasswordLength(String password) {
+        return !StringUtils.isEmpty(password) &&
+            password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&
+            password.length() <= ManagedUserVM.PASSWORD_MAX_LENGTH;
     }
 }

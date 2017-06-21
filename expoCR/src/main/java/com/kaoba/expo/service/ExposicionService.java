@@ -3,6 +3,7 @@ package com.kaoba.expo.service;
 import com.kaoba.expo.domain.Exposicion;
 import com.kaoba.expo.repository.ExposicionRepository;
 import com.kaoba.expo.service.dto.ExposicionDTO;
+import com.kaoba.expo.service.dto.InvitacionDTO;
 import com.kaoba.expo.service.mapper.ExposicionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

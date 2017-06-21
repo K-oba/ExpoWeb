@@ -1,7 +1,11 @@
 package com.kaoba.expo.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.kaoba.expo.domain.Exposicion;
 import com.kaoba.expo.service.ExposicionService;
+import com.kaoba.expo.service.UsuarioService;
+import com.kaoba.expo.service.dto.InvitacionDTO;
+import com.kaoba.expo.service.dto.UsuarioDTO;
 import com.kaoba.expo.web.rest.util.HeaderUtil;
 import com.kaoba.expo.web.rest.util.PaginationUtil;
 import com.kaoba.expo.service.dto.ExposicionDTO;
@@ -34,9 +38,11 @@ public class ExposicionResource {
     private static final String ENTITY_NAME = "exposicion";
 
     private final ExposicionService exposicionService;
+    private final UsuarioService usuarioService;
 
-    public ExposicionResource(ExposicionService exposicionService) {
+    public ExposicionResource(ExposicionService exposicionService, UsuarioService usuarioService) {
         this.exposicionService = exposicionService;
+        this.usuarioService = usuarioService;
     }
 
     /**
@@ -122,5 +128,18 @@ public class ExposicionResource {
         log.debug("REST request to delete Exposicion : {}", id);
         exposicionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+
+
+    /**
+     * POST  /exposicions/:id : delete the "id" exposicion.
+     *
+     * @param invitacionDTO the dto of the invitation to send
+     */
+    public void sendInvitacion(InvitacionDTO invitacionDTO) {
+        log.debug("REST request to send invitation : {}", invitacionDTO);
+        ExposicionDTO exposicionDTO = this.exposicionService.findOne(invitacionDTO.getExposicionId());
+        //UsuarioDTO usuarioDTO = this.usuarioService.f
     }
 }
