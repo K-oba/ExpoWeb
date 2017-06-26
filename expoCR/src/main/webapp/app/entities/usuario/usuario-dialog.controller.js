@@ -47,6 +47,7 @@
                 if (vm.usuario.id !== null) {
                     Usuario.update(vm.usuario, onSaveSuccess, onSaveError);
                 } else {
+                    vm.usuario.rolId = 2;
                     Usuario.save(vm.usuario, onSaveSuccess, onSaveError);
                 }
             }else{

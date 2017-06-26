@@ -28,8 +28,8 @@ public class UsuarioService {
 
     private final MailService mailService;
 
-    private  static  final  long VISITANTE = 2;
-    
+    private  static  final  long VISITANTE = 4;
+
     private final PasswordEncoder passwordEncoder;
 
     public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper, MailService mailService,PasswordEncoder passwordEncoder) {
