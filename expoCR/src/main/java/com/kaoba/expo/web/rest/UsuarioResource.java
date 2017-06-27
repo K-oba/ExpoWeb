@@ -197,9 +197,13 @@ public class UsuarioResource {
         System.out.println(correo);
         if (usuarioDTO == null){
             usuarioDTO = new UsuarioDTO();
-            usuarioDTO.setNombre("Usuario no existe");
+            usuarioDTO.setNombre("User not found");
+        }else{
+        	boolean validPassword;
+        	validPassword = usuarioService.checkUserPass(usuarioDTO.getClave(),clave);
+        	usuarioDTO.setRolNombre(validPassword+"");
         }
-
+        
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 }
