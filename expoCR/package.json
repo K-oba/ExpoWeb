@@ -65,5 +65,8 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "node-sass": "^4.5.3"
   }
 }

@@ -17,24 +17,24 @@
                 <a ui-sref="timeline-detail({id: timeline.id})">{{timeline.id}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>-->
-        <dt ng-show="{{vm.isVisble}}"><span>Stand</span></dt>
-        <dd ng-show="{{vm.isVisble}}">
-            <a ui-sref="stand-detail({id:vm.usuario.standId})">{{vm.usuario.standNombre}}</a>
-        </dd>
-        <dt><span>Rol</span></dt>
-        <dd>
-            <span>{{vm.usuario.rolNombre}}</span>
-        </dd>
+        <!--<dt ng-show="{{vm.isVisble}}"><span>Stand</span></dt>-->
+        <!--<dd ng-show="{{vm.isVisble}}">-->
+            <!--<a ui-sref="stand-detail({id:vm.usuario.standId})">{{vm.usuario.standNombre}}</a>-->
+        <!--</dd>-->
+        <!--<dt><span>Rol</span></dt>-->
+        <!--<dd>-->
+            <!--<span>{{vm.usuario.rolNombre}}</span>-->
+        <!--</dd>-->
     </dl>
 
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
+    <!--<button type="submit"-->
+            <!--ui-sref="{{ vm.previousState }}"-->
+            <!--class="btn btn-info">-->
+        <!--<span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>-->
+    <!--</button>-->
 
-    <button type="button" ui-sref="usuario-detail.edit({id:vm.usuario.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
-    </button>
+    <!--<button type="button" ui-sref="usuario-detail.edit({id:vm.usuario.id})" class="btn btn-primary">-->
+        <!--<span class="glyphicon glyphicon-pencil"></span>-->
+        <!--<span class="hidden-sm-down"> Edit</span>-->
+    <!--</button>-->
 </div>
