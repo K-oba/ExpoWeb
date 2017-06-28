@@ -37,7 +37,7 @@ public class UsuarioResource {
     private static final String EMAIL_EXISTS = "El correo electronico ya esta en uso.";
 
     private final UsuarioService usuarioService;
-    
+
     private final MailService mailService;
 
     public UsuarioResource(UsuarioService usuarioService, MailService mailService) {
@@ -120,19 +120,19 @@ public class UsuarioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 
-//    /**
-//     * DELETE  /usuarios/:id : delete the "id" usuario.
-//     *
-//     * @param id the id of the usuarioDTO to delete
-//     * @return the ResponseEntity with status 200 (OK)
-//     */
-//    @DeleteMapping("/usuarios/{id}")
-//    @Timed
-//    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-//        log.debug("REST request to delete Usuario : {}", id);
-//        usuarioService.delete(id);
-//        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-//    }
+    /**
+     * DELETE  /usuarios/:id : delete the "id" usuario.
+     *
+     * @param id the id of the usuarioDTO to delete
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @DeleteMapping("/usuarios/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
+        log.debug("REST request to delete Usuario : {}", id);
+        usuarioService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
         /**
      * GET  /usuarios/:email : find user by id.
      *
@@ -148,7 +148,7 @@ public class UsuarioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
         //return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
+
      /**
      * POST  /account/changePassword : change the current user's password
      *
@@ -157,7 +157,7 @@ public class UsuarioResource {
      */
     @PostMapping(path = "/changePassword")
     @Timed
-            
+
     public ResponseEntity changePassword(@RequestBody UsuarioDTO usuario) {
         if (!checkPasswordLength(usuario.getClave())) {
             return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
@@ -168,7 +168,7 @@ public class UsuarioResource {
         //usuarioService.changePassword(password);
         //return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
     private boolean checkPasswordLength(String password) {
         return !StringUtils.isEmpty(password) &&
             password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&

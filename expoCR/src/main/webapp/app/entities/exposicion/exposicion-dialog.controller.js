@@ -5,9 +5,9 @@
         .module('expoCrApp')
         .controller('ExposicionDialogController', ExposicionDialogController);
 
-    ExposicionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Exposicion', 'Distrito', 'Categoria', 'Charla', 'Amenidades', 'Beacon', 'Timeline', 'Click', 'Pregunta'];
+    ExposicionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Exposicion', 'Distrito', 'Categoria', 'Charla', 'Amenidades', 'Beacon', 'Timeline', 'Click', 'Pregunta', 'Usuario'];
 
-    function ExposicionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta) {
+    function ExposicionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta, Usuario) {
         var vm = this;
 
         vm.exposicion = entity;
@@ -29,6 +29,7 @@
             vm.clicks.push(click);
         });
         vm.preguntas = Pregunta.query();
+        vm.usuarios = Usuario.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

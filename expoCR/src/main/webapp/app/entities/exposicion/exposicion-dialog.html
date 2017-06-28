@@ -71,6 +71,12 @@
                 <option value=""></option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="field_usuario">Usuario</label>
+            <select class="form-control" id="field_usuario" name="usuario" ng-model="vm.exposicion.usuarioId" ng-options="usuario.id as usuario.nombre for usuario in vm.usuarios"            >
+                <option value=""></option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

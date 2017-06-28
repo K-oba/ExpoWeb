@@ -33,6 +33,10 @@ public class ExposicionDTO implements Serializable {
 
     private Long clickId;
 
+    private Long usuarioId;
+
+    private String usuarioNombre;
+
     public Long getId() {
         return id;
     }
@@ -119,6 +123,22 @@ public class ExposicionDTO implements Serializable {
 
     public void setClickId(Long clickId) {
         this.clickId = clickId;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public String getUsuarioNombre() {
+        return usuarioNombre;
+    }
+
+    public void setUsuarioNombre(String usuarioNombre) {
+        this.usuarioNombre = usuarioNombre;
     }
 
     @Override

@@ -5,9 +5,9 @@
         .module('expoCrApp')
         .controller('ExposicionDetailController', ExposicionDetailController);
 
-    ExposicionDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Exposicion', 'Distrito', 'Categoria', 'Charla', 'Amenidades', 'Beacon', 'Timeline', 'Click', 'Pregunta'];
+    ExposicionDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Exposicion', 'Distrito', 'Categoria', 'Charla', 'Amenidades', 'Beacon', 'Timeline', 'Click', 'Pregunta', 'Usuario'];
 
-    function ExposicionDetailController($scope, $rootScope, $stateParams, previousState, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta) {
+    function ExposicionDetailController($scope, $rootScope, $stateParams, previousState, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta, Usuario) {
         var vm = this;
 
         vm.exposicion = entity;
