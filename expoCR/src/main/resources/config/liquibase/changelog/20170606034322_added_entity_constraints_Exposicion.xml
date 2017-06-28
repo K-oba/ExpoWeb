@@ -37,5 +37,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="click"/>
 
+        <addForeignKeyConstraint baseColumnNames="usuario_id"
+                                 baseTableName="exposicion"
+                                 constraintName="fk_exposicion_usuario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
     </changeSet>
 </databaseChangeLog>

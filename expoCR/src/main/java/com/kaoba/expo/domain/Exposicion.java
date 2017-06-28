@@ -79,6 +79,9 @@ public class Exposicion implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Pregunta> preguntas = new HashSet<>();
 
+    @ManyToOne
+    private Usuario usuario;
+
     public Long getId() {
         return id;
     }
@@ -327,6 +330,19 @@ public class Exposicion implements Serializable {
 
     public void setPreguntas(Set<Pregunta> preguntas) {
         this.preguntas = preguntas;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Exposicion usuario(Usuario usuario) {
+        this.usuario = usuario;
+        return this;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

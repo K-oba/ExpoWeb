@@ -78,6 +78,7 @@ public class CacheConfiguration {
             cm.createCache(com.kaoba.expo.domain.Beacon.class.getName(), jcacheConfiguration);
             cm.createCache(com.kaoba.expo.domain.Click.class.getName(), jcacheConfiguration);
             cm.createCache(com.kaoba.expo.domain.Exposicion.class.getName() + ".preguntas", jcacheConfiguration);
+            cm.createCache(com.kaoba.expo.domain.Usuario.class.getName() + ".exposicions", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

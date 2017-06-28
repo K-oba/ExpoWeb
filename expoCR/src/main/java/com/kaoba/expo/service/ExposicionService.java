@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing Exposicion.
@@ -54,6 +56,19 @@ public class ExposicionService {
         log.debug("Request to get all Exposicions");
         return exposicionRepository.findAll(pageable)
             .map(exposicionMapper::toDto);
+    }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param userId the user id
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findAllByUser(Long userId) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findByUsuarioId(userId);
+        return exposicionMapper.toDto(exposicion);
     }
 
     /**
