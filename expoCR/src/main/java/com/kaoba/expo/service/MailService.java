@@ -33,9 +33,9 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
-    
+
     private static final String USUARIO = "usuario";
-    
+
     private static final String BASE_URL = "baseUrl";
 
     private final JHipsterProperties jHipsterProperties;
@@ -95,6 +95,12 @@ public class MailService {
     @Async
     public void sendActivationEmail(Usuario user) {
         log.debug("Sending activation email to '{}'", user.getCorreo());
+        sendEmailFromTemplate(user, "activationEmail", "email.activation.title");
+    }
+
+    @Async
+    public void sendInvitationEmail(Usuario user) {
+        log.debug("Sending invitation email to '{}'", user.getCorreo());
         sendEmailFromTemplate(user, "activationEmail", "email.activation.title");
     }
 

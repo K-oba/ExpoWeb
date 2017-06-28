@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Created by Robert on 6/20/17.
  */
-public class InvitacionDTO {
+public class InvitationDTO {
     private String email;
     private Long exposicionId;
 

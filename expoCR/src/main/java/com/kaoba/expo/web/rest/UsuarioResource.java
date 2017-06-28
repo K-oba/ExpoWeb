@@ -37,7 +37,7 @@ public class UsuarioResource {
     private static final String EMAIL_EXISTS = "El correo electronico ya esta en uso.";
 
     private final UsuarioService usuarioService;
-    
+
     private final MailService mailService;
 
     public UsuarioResource(UsuarioService usuarioService, MailService mailService) {
@@ -148,16 +148,16 @@ public class UsuarioResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuario));
         //return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-    
+
      /**
      * POST  /account/changePassword : change the current user's password
      *
-     * @param password the new password
+     * @param usuario the new password
      * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
      */
     @PostMapping(path = "/changePassword")
     @Timed
-            
+
     public ResponseEntity changePassword(@RequestBody UsuarioDTO usuario) {
         if (!checkPasswordLength(usuario.getClave())) {
             return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
@@ -168,7 +168,7 @@ public class UsuarioResource {
         //usuarioService.changePassword(password);
         //return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
     private boolean checkPasswordLength(String password) {
         return !StringUtils.isEmpty(password) &&
             password.length() >= ManagedUserVM.PASSWORD_MIN_LENGTH &&

@@ -1,11 +1,13 @@
 package com.kaoba.expo.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.kaoba.expo.domain.Exposicion;
+import com.kaoba.expo.domain.Usuario;
 import com.kaoba.expo.service.ExposicionService;
+import com.kaoba.expo.service.MailService;
 import com.kaoba.expo.service.UsuarioService;
-import com.kaoba.expo.service.dto.InvitacionDTO;
+import com.kaoba.expo.service.dto.InvitationDTO;
 import com.kaoba.expo.service.dto.UsuarioDTO;
+import com.kaoba.expo.service.mapper.UsuarioMapper;
 import com.kaoba.expo.web.rest.util.HeaderUtil;
 import com.kaoba.expo.web.rest.util.PaginationUtil;
 import com.kaoba.expo.service.dto.ExposicionDTO;
@@ -13,6 +15,7 @@ import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -39,10 +42,14 @@ public class ExposicionResource {
 
     private final ExposicionService exposicionService;
     private final UsuarioService usuarioService;
+    private final MailService mailService;
+    @Autowired
+    UsuarioMapper usuarioMapper;
 
-    public ExposicionResource(ExposicionService exposicionService, UsuarioService usuarioService) {
+    public ExposicionResource(ExposicionService exposicionService, UsuarioService usuarioService, MailService mailService) {
         this.exposicionService = exposicionService;
         this.usuarioService = usuarioService;
+        this.mailService = mailService;
     }
 
     /**
@@ -135,11 +142,13 @@ public class ExposicionResource {
     /**
      * POST  /exposicions/:id : delete the "id" exposicion.
      *
-     * @param invitacionDTO the dto of the invitation to send
+     * @param invitationDTO the dto of the invitation to send
      */
-    public void sendInvitacion(InvitacionDTO invitacionDTO) {
-        log.debug("REST request to send invitation : {}", invitacionDTO);
-        ExposicionDTO exposicionDTO = this.exposicionService.findOne(invitacionDTO.getExposicionId());
-        //UsuarioDTO usuarioDTO = this.usuarioService.f
+    public void sendInvitation(InvitationDTO invitationDTO) {
+        log.debug("REST request to send invitation : {}", invitationDTO);
+        ExposicionDTO exposicionDTO = this.exposicionService.findOne(invitationDTO.getExposicionId());
+        UsuarioDTO usuarioDTO = this.usuarioService.findByEmail(invitationDTO.getEmail());
+        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        this.mailService.sendActivationEmail(usuario);
     }
 }
