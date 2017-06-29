@@ -109,7 +109,7 @@
                 $uibModal.open({
                     templateUrl: 'app/entities/exposicion/exposicion-dialog.html',
                     controller: 'ExposicionDialogController',
-                    controllerAs: 'vm',
+                    controllerAs: 'vontrollerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {

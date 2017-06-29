@@ -47,7 +47,6 @@
             <a ui-sref="click-detail({id:vm.exposicion.clickId})">{{vm.exposicion.clickId}}</a>
         </dd>
     </dl>
-
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
@@ -57,5 +56,9 @@
     <button type="button" ui-sref="exposicion-detail.edit({id:vm.exposicion.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down"> Edit</span>
+    </button>
+    <button type="button" ui-sref="exposicion-detail.invite({id:vm.exposicion.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-envelope"></span>
+        <span class="hidden-sm-down"> Invite Stand</span>
     </button>
 </div>
