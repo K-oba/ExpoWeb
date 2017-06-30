@@ -135,4 +135,18 @@ public class BrouchureResource {
         brouchureService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+        /**
+     * DELETE  /brouchures/:id : delete the "id" brouchure.
+     *
+     * @param id the id of the brouchureDTO to delete
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @GetMapping("/upload")
+    @Timed
+    public ResponseEntity<Void> uploadImage() {
+        //log.debug("REST request to delete Brouchure : {}", id);
+        brouchureService.uploadImage();
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, "hola")).build();
+    }
 }

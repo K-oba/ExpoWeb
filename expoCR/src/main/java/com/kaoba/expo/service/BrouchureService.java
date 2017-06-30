@@ -1,5 +1,4 @@
 package com.kaoba.expo.service;
-
 import com.kaoba.expo.domain.Brouchure;
 import com.kaoba.expo.repository.BrouchureRepository;
 import com.kaoba.expo.service.dto.BrouchureDTO;
@@ -15,6 +14,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
+//import com.cloudinary.utils.ObjectUtils;
+import java.io.File;
+import java.util.Map;
+import java.io.IOException;
 
 /**
  * Service Implementation for managing Brouchure.
@@ -28,7 +33,15 @@ public class BrouchureService {
     private final BrouchureRepository brouchureRepository;
 
     private final BrouchureMapper brouchureMapper;
-
+    
+    
+//    Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+//        "cloud_name", "duxllywl7",
+//        "api_key", "622811722812169",
+//        "api_secret", "-HKQ_3Y-u-bAGCKGbBiHU8aZ4OY"));
+//
+//    Cloudinary cloudinary = Singleton.getCloudinary();
+   
     public BrouchureService(BrouchureRepository brouchureRepository, BrouchureMapper brouchureMapper) {
         this.brouchureRepository = brouchureRepository;
         this.brouchureMapper = brouchureMapper;
@@ -112,4 +125,20 @@ public class BrouchureService {
         log.debug("Request to delete Brouchure : {}", id);
         brouchureRepository.delete(id);
     }
+    
+    public void uploadImage(){
+       Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+        "cloud_name", "duxllywl7",
+        "api_key", "622811722812169",
+        "api_secret", "-HKQ_3Y-u-bAGCKGbBiHU8aZ4OY"));
+       try{
+        File toUpload = new File("/Users/valeriaramirez/Documents/RandomImgs/stranger-things-1200x675.jpg");
+        Map uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
+       log.debug("subida");
+  
+       }catch(IOException e){
+           System.out.println(e);
+       }
+   }
+    
 }
