@@ -201,9 +201,12 @@ public class UsuarioResource {
         }else{
         	boolean validPassword;
         	validPassword = usuarioService.checkUserPass(usuarioDTO.getClave(),clave);
-        	usuarioDTO.setRolNombre(validPassword+"");
+        	if (validPassword)
+        	    usuarioDTO.setClave("");
+        	else
+        	    usuarioDTO = null;
         }
-        
+
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 }
