@@ -10,6 +10,11 @@
     function ExposicionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta, Usuario) {
         var vm = this;
 
+        vm.startDate = new Date();
+        vm.endDate = new Date();
+
+        vm.typeExpo = "";
+
         vm.exposicion = entity;
         vm.clear = clear;
         vm.save = save;
@@ -57,6 +62,11 @@
         function onSaveError () {
             vm.isSaving = false;
         }
+
+         vm.map = {
+            center: { latitude: 39.8282, longitude: -98.5795 },
+            zoom: 4
+          };
 
 
     }
