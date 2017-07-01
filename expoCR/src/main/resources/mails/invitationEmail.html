@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.invitation.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="${baseUrl}/favicon.ico" />
+</head>
+<body>
+<p th:text="#{email.invitation.greeting(${user.nombre})}"></p>
+<p th:text="#{email.invitation.text1(${exposicion.nombre})}">
+</p>
+<p>
+    <a th:href="@{|${baseUrl}/#/usuario/finish?key=${user.correo}}"></a>
+    <p th:text="#{email.invitation.text3}"></p>
+</p>
+<p>
+    <span th:text="#{email.invitation.text2}"></span>
+    <br/>
+    <em th:text="#{email.invitation.signature}"></em>
+</p>
+</body>
+</html>

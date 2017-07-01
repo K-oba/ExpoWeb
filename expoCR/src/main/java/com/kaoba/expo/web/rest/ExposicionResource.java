@@ -137,18 +137,18 @@ public class ExposicionResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-
-
     /**
-     * POST  /exposicions/:id : delete the "id" exposicion.
+     * POST  /exposicions/:id : send the invite from "id" exposicion.
      *
      * @param invitationDTO the dto of the invitation to send
      */
+    @PutMapping("sendInvite/id")
+    @Timed
     public void sendInvitation(InvitationDTO invitationDTO) {
         log.debug("REST request to send invitation : {}", invitationDTO);
         ExposicionDTO exposicionDTO = this.exposicionService.findOne(invitationDTO.getExposicionId());
         UsuarioDTO usuarioDTO = this.usuarioService.findByEmail(invitationDTO.getEmail());
         Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
-        this.mailService.sendActivationEmail(usuario);
+        this.mailService.sendInvitationEmail(usuario, exposicionDTO);
     }
 }

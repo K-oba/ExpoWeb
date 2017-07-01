@@ -4,6 +4,7 @@ import com.kaoba.expo.domain.User;
 
 import com.kaoba.expo.domain.Usuario;
 
+import com.kaoba.expo.service.dto.ExposicionDTO;
 import io.github.jhipster.config.JHipsterProperties;
 
 import org.apache.commons.lang3.CharEncoding;
@@ -34,9 +35,9 @@ public class MailService {
 
     private static final String USER = "user";
 
-    private static final String USUARIO = "usuario";
-
     private static final String BASE_URL = "baseUrl";
+
+    private static final String EXPOSICION = "exposicion";
 
     private final JHipsterProperties jHipsterProperties;
 
@@ -92,6 +93,19 @@ public class MailService {
 
     }
 
+    public void sendEmailFromTemplate(Usuario user, ExposicionDTO exposicionDTO, String templateName, String titleKey) {
+        Locale locale = Locale.ENGLISH;
+        //Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(EXPOSICION, exposicionDTO);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(user.getCorreo(), subject, content, false, true);
+
+    }
+
     @Async
     public void sendActivationEmail(Usuario user) {
         log.debug("Sending activation email to '{}'", user.getCorreo());
@@ -99,9 +113,9 @@ public class MailService {
     }
 
     @Async
-    public void sendInvitationEmail(Usuario user) {
+    public void sendInvitationEmail(Usuario user, ExposicionDTO exposicionDTO) {
         log.debug("Sending invitation email to '{}'", user.getCorreo());
-        sendEmailFromTemplate(user, "activationEmail", "email.activation.title");
+        sendEmailFromTemplate(user, exposicionDTO, "invitationEmail", "email.invitation.title");
     }
 
     @Async
