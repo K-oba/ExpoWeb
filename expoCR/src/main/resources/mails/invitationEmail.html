@@ -10,8 +10,8 @@
 <p th:text="#{email.invitation.text1(${exposicion.nombre})}">
 </p>
 <p>
-    <a th:href="@{|${baseUrl}/#/usuario/finish?key=${user.correo}}"></a>
-    <p th:text="#{email.invitation.text3}"></p>
+    <a th:href="@{|${baseUrl}/#/usuario/finish?key=${user.correo}}">Confirmation Link</a>
+    <p ></p>
 </p>
 <p>
     <span th:text="#{email.invitation.text2}"></span>
