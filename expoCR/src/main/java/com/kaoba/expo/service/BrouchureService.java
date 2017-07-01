@@ -55,6 +55,8 @@ public class BrouchureService {
      */
     public BrouchureDTO save(BrouchureDTO brouchureDTO) {
         log.debug("Request to save Brouchure : {}", brouchureDTO);
+        String publicId = uploadImage(brouchureDTO.getUrlimagen());
+        brouchureDTO.setUrlimagen(publicId);
         Brouchure brouchure = brouchureMapper.toEntity(brouchureDTO);
         brouchure = brouchureRepository.save(brouchure);
         return brouchureMapper.toDto(brouchure);
@@ -126,18 +128,20 @@ public class BrouchureService {
         brouchureRepository.delete(id);
     }
     
-    public void uploadImage(){
+    public String uploadImage(String url){
        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
         "cloud_name", "duxllywl7",
         "api_key", "622811722812169",
         "api_secret", "-HKQ_3Y-u-bAGCKGbBiHU8aZ4OY"));
        try{
-        File toUpload = new File("/Users/valeriaramirez/Documents/RandomImgs/stranger-things-1200x675.jpg");
-        Map uploadResult = cloudinary.uploader().upload(toUpload, ObjectUtils.emptyMap());
-       log.debug("subida");
-  
+           //File toUpload = new File("/Users/valeriaramirez/Documents/RandomImgs/stranger-things-1200x675.jpg");
+           Map uploadResult = cloudinary.uploader().upload(url, ObjectUtils.emptyMap());
+           String publicId = (String) uploadResult.get("public_id");
+           log.debug("id de foto",publicId);
+           return publicId;
        }catch(IOException e){
            System.out.println(e);
+           return null;
        }
    }
     

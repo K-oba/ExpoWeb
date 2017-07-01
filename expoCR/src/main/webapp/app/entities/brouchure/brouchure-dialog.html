@@ -32,11 +32,24 @@
                     ng-model="vm.brouchure.descripcion"
                     />
         </div>
+        <script>
+        function readURL(input) {
+               if (input.files && input.files[0]) {
+                   var reader = new FileReader();
+
+                   reader.onload = function (e) {
+                       $('#blah')
+                           .attr('src', e.target.result);
+                   };
+
+                   reader.readAsDataURL(input.files[0]);
+               }
+           }
+        </script>
         <div class="form-group">
           <img id="blah" src="http://placehold.it/180" alt="your image" />
-          <input type='file' onchange="readURL(this);" />
+          <input id="url" type='file' onchange="readURL(this)"/>
         </div>
-
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
