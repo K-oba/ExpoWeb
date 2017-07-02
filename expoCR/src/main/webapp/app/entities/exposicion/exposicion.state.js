@@ -84,7 +84,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/exposicion/exposicion-invite-dialog.html',
-                    controller: 'ExposicionDetailController',
+                    controller: 'ExposicionDialogController',
                     controllerAs: 'vm'
                 }
             },
@@ -157,31 +157,6 @@
                     $state.go('exposicion', null, { reload: 'exposicion' });
                 }, function() {
                     $state.go('exposicion');
-                });
-            }]
-        })
-        .state('exposicion.edit', {
-            parent: 'exposicion',
-            url: '/{id}/edit',
-            data: {
-                authorities: ['ROLE_USER']
-            },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                $uibModal.open({
-                    templateUrl: 'app/entities/exposicion/exposicion-dialog.html',
-                    controller: 'ExposicionDialogController',
-                    controllerAs: 'vm',
-                    backdrop: 'static',
-                    size: 'lg',
-                    resolve: {
-                        entity: ['Exposicion', function(Exposicion) {
-                            return Exposicion.get({id : $stateParams.id}).$promise;
-                        }]
-                    }
-                }).result.then(function() {
-                    $state.go('exposicion', null, { reload: 'exposicion' });
-                }, function() {
-                    $state.go('^');
                 });
             }]
         })

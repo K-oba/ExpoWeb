@@ -57,6 +57,19 @@ public class ExposicionService {
     }
 
     /**
+     *  Get all the live exposicions.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public Page<ExposicionDTO> findLive(Pageable pageable) {
+        log.debug("Request to get all the live Exposicions");
+        return exposicionRepository.findByEstadoExpo(pageable)
+            .map(exposicionMapper::toDto);
+    }
+
+    /**
      *  Get one exposicion by id.
      *
      *  @param id the id of the entity

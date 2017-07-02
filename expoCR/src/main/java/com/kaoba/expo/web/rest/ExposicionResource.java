@@ -107,6 +107,19 @@ public class ExposicionResource {
         Page<ExposicionDTO> page = exposicionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }    /**
+     * GET  /exposicions : get all the live exposicions.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of live exposicions in body
+     */
+    @GetMapping("/liveExposicions")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getLiveExposicions(@ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Exposicions");
+        Page<ExposicionDTO> page = exposicionService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
