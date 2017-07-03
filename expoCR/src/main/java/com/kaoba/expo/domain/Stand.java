@@ -6,6 +6,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -43,6 +45,11 @@ public class Stand implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Beacon beacon;
+
+    @ManyToMany(mappedBy = "stands")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Exposicion> exposicions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -128,6 +135,31 @@ public class Stand implements Serializable {
 
     public void setBeacon(Beacon beacon) {
         this.beacon = beacon;
+    }
+
+    public Set<Exposicion> getExposicions() {
+        return exposicions;
+    }
+
+    public Stand exposicions(Set<Exposicion> exposicions) {
+        this.exposicions = exposicions;
+        return this;
+    }
+
+    public Stand addExposicion(Exposicion exposicion) {
+        this.exposicions.add(exposicion);
+        exposicion.getStands().add(this);
+        return this;
+    }
+
+    public Stand removeExposicion(Exposicion exposicion) {
+        this.exposicions.remove(exposicion);
+        exposicion.getStands().remove(this);
+        return this;
+    }
+
+    public void setExposicions(Set<Exposicion> exposicions) {
+        this.exposicions = exposicions;
     }
 
     @Override
