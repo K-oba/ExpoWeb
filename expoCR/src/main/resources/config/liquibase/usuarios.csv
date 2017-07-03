@@ -3,3 +3,4 @@ id;nombre;correo;clave;rol_id
 2;Valeria Ramirez;vramirezc@ucenfotec.ac.cr;admin123;1
 3;Jimmi Villa;jvillac@ucenfotec.ac.cr;admin123;1
 4;Robert Jameson;rjamesona@ucenfotec.ac.cr;admin123;1
+5;Cenfotec;info@cenfotec.ac.cr;cenfo123;3

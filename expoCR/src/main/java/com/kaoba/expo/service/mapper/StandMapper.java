@@ -24,6 +24,7 @@ public interface StandMapper extends EntityMapper <StandDTO, Stand> {
     @Mapping(source = "clickId", target = "click")
 
     @Mapping(source = "beaconId", target = "beacon")
+    @Mapping(target = "exposicions", ignore = true)
     Stand toEntity(StandDTO standDTO); 
     default Stand fromId(Long id) {
         if (id == null) {
