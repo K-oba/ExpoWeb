@@ -29,12 +29,13 @@
 
         function save () {
             vm.isSaving = true;
-            //var url = document.getElementById('url');
-            var url = document.getElementById('url').files[0];
-            console.log(url.value);
-              console.log(vm.brouchure);
-            vm.brouchure.urlimagen = url.value;
-            console.log(vm.brouchure);
+            var url = document.getElementById('url');
+            //var url = document.getElementById('url').files[0];
+            //url.value.replace("C:\\fakepath\\", "");
+            //console.log(url.value.replace("C:\\fakepath\\", ""));
+              //console.log(vm.brouchure);
+            vm.brouchure.urlimagen = "sdfsdfs";
+            //console.log(vm.brouchure);
             if (vm.brouchure.nombre !== null) {
                 Brouchure.update(vm.brouchure, onSaveSuccess, onSaveError);
             } else {
