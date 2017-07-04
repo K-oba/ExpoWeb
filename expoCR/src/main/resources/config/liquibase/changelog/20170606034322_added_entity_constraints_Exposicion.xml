@@ -37,5 +37,22 @@
                                  referencedColumnNames="id"
                                  referencedTableName="click"/>
 
+        <addForeignKeyConstraint baseColumnNames="usuario_id"
+                                 baseTableName="exposicion"
+                                 constraintName="fk_exposicion_usuario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="usuario"/>
+
+        <addForeignKeyConstraint baseColumnNames="exposicions_id"
+                                 baseTableName="exposicion_stand"
+                                 constraintName="fk_exposicion_stand_exposicions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exposicion"/>
+        <addForeignKeyConstraint baseColumnNames="stands_id"
+                                 baseTableName="exposicion_stand"
+                                 constraintName="fk_exposicion_stand_stands_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="stand"/>
+        
     </changeSet>
 </databaseChangeLog>

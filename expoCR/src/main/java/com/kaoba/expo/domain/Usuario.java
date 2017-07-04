@@ -52,6 +52,11 @@ public class Usuario implements Serializable {
     @ManyToOne
     private Rol rol;
 
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Exposicion> exposicions = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -173,6 +178,31 @@ public class Usuario implements Serializable {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public Set<Exposicion> getExposicions() {
+        return exposicions;
+    }
+
+    public Usuario exposicions(Set<Exposicion> exposicions) {
+        this.exposicions = exposicions;
+        return this;
+    }
+
+    public Usuario addExposicion(Exposicion exposicion) {
+        this.exposicions.add(exposicion);
+        exposicion.setUsuario(this);
+        return this;
+    }
+
+    public Usuario removeExposicion(Exposicion exposicion) {
+        this.exposicions.remove(exposicion);
+        exposicion.setUsuario(null);
+        return this;
+    }
+
+    public void setExposicions(Set<Exposicion> exposicions) {
+        this.exposicions = exposicions;
     }
 
     @Override

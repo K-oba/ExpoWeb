@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,7 +23,8 @@ public interface ExposicionRepository extends JpaRepository<Exposicion,Long> {
     @Query("select exposicion from Exposicion exposicion left join fetch exposicion.amenidades where exposicion.id =:id")
     Exposicion findOneWithEagerRelationships(@Param("id") Long id);
 
+    List<Exposicion> findByUsuarioId(@Param("userId") Long id);
+
     @SuppressWarnings("SameParameterValue")
     Page<Exposicion> findByEstadoExpo(boolean isLive, Pageable pageable);
-
 }

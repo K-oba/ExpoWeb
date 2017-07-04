@@ -19,11 +19,16 @@ public class SubCategoriaDTO implements Serializable {
 
     private Long categoriaId;
 
+    private String categoriaNombre;
+
     private Long brouchureId;
 
     private Long clickId;
 
     private Long beaconId;
+
+    public SubCategoriaDTO() {
+    }
 
     public Long getId() {
         return id;
@@ -109,5 +114,13 @@ public class SubCategoriaDTO implements Serializable {
             ", nombre='" + getNombre() + "'" +
             ", tipo='" + getTipo() + "'" +
             "}";
+    }
+
+    public String getCategoriaNombre() {
+        return categoriaNombre;
+    }
+
+    public void setCategoriaNombre(String categoriaNombre) {
+        this.categoriaNombre = categoriaNombre;
     }
 }
