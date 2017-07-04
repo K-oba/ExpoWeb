@@ -116,8 +116,8 @@ public class ExposicionResource {
     @GetMapping("/liveExposicions")
     @Timed
     public ResponseEntity<List<ExposicionDTO>> getLiveExposicions(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of Exposicions");
-        Page<ExposicionDTO> page = exposicionService.findAll(pageable);
+        log.debug("REST request to get a page of live Exposicions");
+        Page<ExposicionDTO> page = exposicionService.findLive(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

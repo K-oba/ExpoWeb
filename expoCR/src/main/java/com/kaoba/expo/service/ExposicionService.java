@@ -65,7 +65,7 @@ public class ExposicionService {
     @Transactional(readOnly = true)
     public Page<ExposicionDTO> findLive(Pageable pageable) {
         log.debug("Request to get all the live Exposicions");
-        return exposicionRepository.findByEstadoExpo(pageable)
+        return exposicionRepository.findByEstadoExpo(true, pageable)
             .map(exposicionMapper::toDto);
     }
 
