@@ -28,14 +28,16 @@
         }
 
         function save () {
+            console.log(vm.brouchure);
             vm.isSaving = true;
-            var url = document.getElementById('url');
+            var url = document.getElementById('blah');
+            //console.log(url.src);
             //var url = document.getElementById('url').files[0];
             //url.value.replace("C:\\fakepath\\", "");
             //console.log(url.value.replace("C:\\fakepath\\", ""));
               //console.log(vm.brouchure);
-            vm.brouchure.urlimagen = "sdfsdfs";
-            //console.log(vm.brouchure);
+            vm.brouchure.urlimagen = url.src;
+            console.log(vm.brouchure);
             if (vm.brouchure.nombre !== null) {
                 Brouchure.update(vm.brouchure, onSaveSuccess, onSaveError);
             } else {
