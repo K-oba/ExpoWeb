@@ -120,19 +120,19 @@ public class UsuarioResource {
             return ResponseUtil.wrapOrNotFound(Optional.ofNullable(usuarioDTO));
     }
 
-//    /**
-//     * DELETE  /usuarios/:id : delete the "id" usuario.
-//     *
-//     * @param id the id of the usuarioDTO to delete
-//     * @return the ResponseEntity with status 200 (OK)
-//     */
-//    @DeleteMapping("/usuarios/{id}")
-//    @Timed
-//    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
-//        log.debug("REST request to delete Usuario : {}", id);
-//        usuarioService.delete(id);
-//        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-//    }
+    /**
+     * DELETE  /usuarios/:id : delete the "id" usuario.
+     *
+     * @param id the id of the usuarioDTO to delete
+     * @return the ResponseEntity with status 200 (OK)
+     */
+    @DeleteMapping("/usuarios/{id}")
+    @Timed
+    public ResponseEntity<Void> deleteUsuario(@PathVariable Long id) {
+        log.debug("REST request to delete Usuario : {}", id);
+        usuarioService.delete(id);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
         /**
      * GET  /usuarios/:email : find user by id.
      *

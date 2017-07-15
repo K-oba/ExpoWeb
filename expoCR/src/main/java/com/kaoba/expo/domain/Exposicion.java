@@ -79,6 +79,16 @@ public class Exposicion implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Pregunta> preguntas = new HashSet<>();
 
+    @ManyToOne
+    private Usuario usuario;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "exposicion_stand",
+               joinColumns = @JoinColumn(name="exposicions_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="stands_id", referencedColumnName="id"))
+    private Set<Stand> stands = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -327,6 +337,44 @@ public class Exposicion implements Serializable {
 
     public void setPreguntas(Set<Pregunta> preguntas) {
         this.preguntas = preguntas;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Exposicion usuario(Usuario usuario) {
+        this.usuario = usuario;
+        return this;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Set<Stand> getStands() {
+        return stands;
+    }
+
+    public Exposicion stands(Set<Stand> stands) {
+        this.stands = stands;
+        return this;
+    }
+
+    public Exposicion addStand(Stand stand) {
+        this.stands.add(stand);
+        stand.getExposicions().add(this);
+        return this;
+    }
+
+    public Exposicion removeStand(Stand stand) {
+        this.stands.remove(stand);
+        stand.getExposicions().remove(this);
+        return this;
+    }
+
+    public void setStands(Set<Stand> stands) {
+        this.stands = stands;
     }
 
     @Override

@@ -33,6 +33,12 @@ public class ExposicionDTO implements Serializable {
 
     private Long clickId;
 
+    private Long usuarioId;
+
+    private String usuarioNombre;
+
+    private Set<StandDTO> stands = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -119,6 +125,30 @@ public class ExposicionDTO implements Serializable {
 
     public void setClickId(Long clickId) {
         this.clickId = clickId;
+    }
+
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    public String getUsuarioNombre() {
+        return usuarioNombre;
+    }
+
+    public void setUsuarioNombre(String usuarioNombre) {
+        this.usuarioNombre = usuarioNombre;
+    }
+
+    public Set<StandDTO> getStands() {
+        return stands;
+    }
+
+    public void setStands(Set<StandDTO> stands) {
+        this.stands = stands;
     }
 
     @Override

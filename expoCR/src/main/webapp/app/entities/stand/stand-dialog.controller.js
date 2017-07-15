@@ -5,9 +5,9 @@
         .module('expoCrApp')
         .controller('StandDialogController', StandDialogController);
 
-    StandDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Stand', 'Usuario', 'Brouchure', 'Click', 'Beacon'];
+    StandDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Stand', 'Usuario', 'Brouchure', 'Click', 'Beacon', 'Exposicion'];
 
-    function StandDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Stand, Usuario, Brouchure, Click, Beacon) {
+    function StandDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Stand, Usuario, Brouchure, Click, Beacon, Exposicion) {
         var vm = this;
 
         vm.stand = entity;
@@ -41,6 +41,7 @@
         }).then(function(beacon) {
             vm.beacons.push(beacon);
         });
+        vm.exposicions = Exposicion.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

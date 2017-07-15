@@ -21,6 +21,9 @@ public interface UsuarioMapper extends EntityMapper <UsuarioDTO, Usuario> {
     @Mapping(source = "standId", target = "stand")
 
     @Mapping(source = "rolId", target = "rol")
+
+    @Mapping(target = "exposicions", ignore = true)
+
     Usuario toEntity(UsuarioDTO usuarioDTO);
     default Usuario fromId(Long id) {
         if (id == null) {

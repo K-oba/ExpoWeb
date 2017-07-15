@@ -74,15 +74,15 @@ public class UsuarioResourceIntTest {
 
     private Usuario usuario;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
+//    @Before
+//    public void setup() {
+//        MockitoAnnotations.initMocks(this);
 //        UsuarioResource usuarioResource = new UsuarioResource(usuarioService);
 //        this.restUsuarioMockMvc = MockMvcBuilders.standaloneSetup(usuarioResource)
 //            .setCustomArgumentResolvers(pageableArgumentResolver)
 //            .setControllerAdvice(exceptionTranslator)
 //            .setMessageConverters(jacksonMessageConverter).build();
-    }
+//    }
 
     /**
      * Create an entity for this test.

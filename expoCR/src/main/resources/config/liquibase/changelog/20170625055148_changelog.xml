@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+   <changeSet author="Antoni Ramirez (generated)" id="1498369977532-1">
+      <addColumn tableName="exposicion">
+         <column name="usuario_id" type="bigint"/>
+      </addColumn>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1498369977532-2">
+      <addForeignKeyConstraint baseColumnNames="usuario_id"
+                               baseTableName="exposicion"
+                               constraintName="FKcutaft2k226n23c6yfrjt4hwc"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="usuario"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1498369977532-3">
+      <dropUniqueConstraint constraintName="user_id" tableName="jhi_social_user_connection"/>
+   </changeSet>
+   <changeSet author="Antoni Ramirez (generated)" id="1498369977532-4">
+      <dropUniqueConstraint constraintName="user_id_2" tableName="jhi_social_user_connection"/>
+   </changeSet>
+</databaseChangeLog>
