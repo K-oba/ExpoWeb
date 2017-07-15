@@ -15,11 +15,11 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.brouchure.id">
+        <!-- <div class="form-group" ng-show="vm.brouchure.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.brouchure.id" readonly />
-        </div>
+        </div> -->
         <div class="form-group">
             <label class="control-label" for="field_nombre">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="field_nombre" ng-model="vm.brouchure.nombre"/>
@@ -29,6 +29,14 @@
             <input type="text" class="form-control" name="descripcion" id="field_descripcion" ng-model="vm.brouchure.descripcion"/>
         </div>
         <script>
+        var name = localStorage.getItem("url");
+        var url = document.getElementById("blah");
+        if(name !== ""){
+          url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/"+name+".png";
+        }else {
+          url.src= "http://res.cloudinary.com/duxllywl7/image/upload/v1499319117/brochure_tzqddz.png";
+        }
+
         //$.cloudinary.config({ cloud_name: 'duxllywl7', api_key: '622811722812169'});
         function readURL(input) {
         $.cloudinary.config({ cloud_name: 'duxllywl7', api_key: '622811722812169'});
@@ -50,10 +58,9 @@
              }
         </script>
         <div class="form-group">
-          <img id="blah" src="http://placehold.it/180" alt="your image" />
+          <img id="blah" src="http://placehold.it/180" alt="your image"/>
           <input id="url" type="file" onchange="readURL(this)"/>
           <!-- <input id="url" type='file' onchange="readURL(this)" class="cloudinary-fileupload" data-cloudinary-field="image_id"   data-form-data=" ... html-escaped JSON data ... "/> -->
-
          </div>
         <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
           Select image to upload:

@@ -1,20 +1,32 @@
-
+<script>
+var name = localStorage.getItem("url");
+var url = document.getElementById("blah");
+if(name !== ""){
+  url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/"+name+".png";
+}else {
+  url.src= "http://res.cloudinary.com/duxllywl7/image/upload/v1499319117/brochure_tzqddz.png";
+}
+</script>
 <div>
-    <h2><span>Brouchure</span> {{vm.brouchure.id}}</h2>
+    <!-- <h2><span>Brouchure</span> {{vm.brouchure.id}}</h2> -->
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Nombre</span></dt>
+        <!-- <dt><span>Nombre</span></dt> -->
         <dd>
-            <span>{{vm.brouchure.nombre}}</span>
+            <h1>{{vm.brouchure.nombre}}</h1>
         </dd>
-        <dt><span>Descripcion</span></dt>
+        <!-- <div class="form-group"> -->
+        <dd>
+          <img id="blah" src="http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/dpli2lj4aqr1yuolpreg.png"alt="your image" />
+        <!-- </div> -->
+        </dd>
+        <dt><p>Descripcion</p></dt>
         <dd>
             <span>{{vm.brouchure.descripcion}}</span>
         </dd>
-        <dt><span>Urlimagen</span></dt>
         <dd>
-            <span>{{vm.brouchure.urlimagen}}</span>
+            <!-- <span>{{vm.brouchure.urlimagen}}</span> -->
         </dd>
     </dl>
 

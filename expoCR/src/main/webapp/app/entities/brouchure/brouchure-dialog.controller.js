@@ -18,7 +18,6 @@
         vm.subcategorias = SubCategoria.query();
         vm.url ="";
 
-
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
@@ -38,7 +37,8 @@
               //console.log(vm.brouchure);
             vm.brouchure.urlimagen = url.src;
             console.log(vm.brouchure);
-            if (vm.brouchure.nombre !== null) {
+            if (vm.brouchure.id !== null) {
+              url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/"+vm.brouchure.urlimagen+".png";
                 Brouchure.update(vm.brouchure, onSaveSuccess, onSaveError);
             } else {
                 Brouchure.save(vm.brouchure, onSaveSuccess, onSaveError);
@@ -56,42 +56,16 @@
         function onSaveError () {
             vm.isSaving = false;
         }
-        // vm.readURL = function(input) {
-        //        if (input.files && input.files[0]) {
-        //            var reader = new FileReader();
-        //
-        //            reader.onload = function (e) {
-        //                $('#blah')
-        //                    .attr('src', e.target.result);
-        //            };
-        //
-        //            reader.readAsDataURL(input.files[0]);
-        //        }
-        //    }
-    //     $("#url").change(function() {
-    // var file = this.files[0];
-    // var imagefile = file.type;
-    // var imagesize = file.size;
-    // console.log(imagesize);
-    // var match= ["image/jpeg","image/png","image/jpg","image/gif"];
-    // $('.upload-submit').prop('disabled',false).css('opacity',1);
-    // if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2]) || (imagefile==match[3])))
-    // {
-    //
-    //     $("#message").html("<p id='error' style='color:red;'>Please Select A valid Image File</p>"+"<h4  style='color:red;'>Note</h4>"+"<span id='error_message'  style='color:red;'>Only jpeg, jpg, gif and png Images type allowed</span>");
-    //     return false;
-    // } else if (imagesize > 6000000){
-    //
-    //     $("#message").html("<p id='error' style='color:red;'>Your file size is higher than the allowed size (6MB)</p>");
-    //     return false;
-    // }
-    // else
-    // {
-    //     var reader = new FileReader();
-    //     reader.onload = imageIsLoaded;
-    //     reader.readAsDataURL(this.files[0]);
-    //     var imgData = reader.onload;        }
-// });
 
+        function loadData(){
+          if(vm.brouchure.id !== null){
+            //var url = document.getElementById("blah");
+            //console.log(vm.brouchure);
+            localStorage.setItem("url", vm.brouchure.urlimagen);
+          }else {
+            localStorage.setItem("url", "");
+          }
+        }
+        loadData();
     }
 })();
