@@ -32,7 +32,7 @@
         var name = localStorage.getItem("url");
         var url = document.getElementById("blah");
         if(name !== ""){
-          url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/"+name+".png";
+          url.src = name;
         }else {
           url.src= "http://res.cloudinary.com/duxllywl7/image/upload/v1499319117/brochure_tzqddz.png";
         }

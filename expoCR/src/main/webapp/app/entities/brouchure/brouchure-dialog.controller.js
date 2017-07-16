@@ -27,7 +27,7 @@
         }
 
         function save () {
-            console.log(vm.brouchure);
+            //console.log(vm.brouchure);
             vm.isSaving = true;
             var url = document.getElementById('blah');
             //console.log(url.src);
@@ -36,16 +36,16 @@
             //console.log(url.value.replace("C:\\fakepath\\", ""));
               //console.log(vm.brouchure);
             vm.brouchure.urlimagen = url.src;
-            console.log(vm.brouchure);
+            //console.log(vm.brouchure);
             if (vm.brouchure.id !== null) {
-              url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/"+vm.brouchure.urlimagen+".png";
+              url.src = vm.brouchure.id;
                 Brouchure.update(vm.brouchure, onSaveSuccess, onSaveError);
             } else {
                 Brouchure.save(vm.brouchure, onSaveSuccess, onSaveError);
             }
         }
         function setUrl (url){
-          console.log(url);
+          //console.log(url);
         }
         function onSaveSuccess (result) {
             $scope.$emit('expoCrApp:brouchureUpdate', result);

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
+import com.cloudinary.Cloudinary;
 //import com.cloudinary.utils.ObjectUtils;
 import java.io.File;
 import java.util.Map;
@@ -136,7 +137,7 @@ public class BrouchureService {
        try{
            //File toUpload = new File("/Users/valeriaramirez/Documents/RandomImgs/stranger-things-1200x675.jpg");
            Map uploadResult = cloudinary.uploader().upload(url, ObjectUtils.emptyMap());
-           String publicId = (String) uploadResult.get("public_id");
+           String publicId = (String) uploadResult.get("url");
            log.debug("id de foto",publicId);
            return publicId;
        }catch(IOException e){

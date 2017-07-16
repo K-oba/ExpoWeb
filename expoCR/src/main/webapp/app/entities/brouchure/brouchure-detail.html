@@ -1,8 +1,9 @@
 <script>
 var name = localStorage.getItem("url");
+//console.log(name);
 var url = document.getElementById("blah");
 if(name !== ""){
-  url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/"+name+".png";
+  url.src = name;
 }else {
   url.src= "http://res.cloudinary.com/duxllywl7/image/upload/v1499319117/brochure_tzqddz.png";
 }
@@ -18,10 +19,10 @@ if(name !== ""){
         </dd>
         <!-- <div class="form-group"> -->
         <dd>
-          <img id="blah" src="http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/dpli2lj4aqr1yuolpreg.png"alt="your image" />
+          <img id="blah" alt="your image" />
         <!-- </div> -->
         </dd>
-        <dt><p>Descripcion</p></dt>
+       <!--  <dt><p>Descripcion</p></dt> -->
         <dd>
             <span>{{vm.brouchure.descripcion}}</span>
         </dd>
