@@ -93,4 +93,17 @@ public class ExposicionService {
         log.debug("Request to delete Exposicion : {}", id);
         exposicionRepository.delete(id);
     }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param dateExpo start date
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findAllByDate(String dateExpo) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findByFechaInicio(dateExpo);
+        return exposicionMapper.toDto(exposicion);
+    }
 }
