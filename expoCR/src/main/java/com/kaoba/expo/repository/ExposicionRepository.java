@@ -2,6 +2,7 @@ package com.kaoba.expo.repository;
 
 import com.kaoba.expo.domain.Exposicion;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -25,4 +26,6 @@ public interface ExposicionRepository extends JpaRepository<Exposicion,Long> {
 
     List<Exposicion> findByFechaInicio(@Param("dateExpo") String dateExpo);
 
+    @SuppressWarnings("SameParameterValue")
+    Page<Exposicion> findByEstadoExpo(boolean isLive, Pageable pageable);
 }
