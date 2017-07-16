@@ -52,6 +52,20 @@
             "otherEntityName": "pregunta",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "exposicion"
+        },
+        {
+            "relationshipName": "usuario",
+            "otherEntityName": "usuario",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nombre"
+        },
+        {
+            "relationshipName": "stand",
+            "otherEntityName": "stand",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nombre",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "exposicion"
         }
     ],
     "fields": [

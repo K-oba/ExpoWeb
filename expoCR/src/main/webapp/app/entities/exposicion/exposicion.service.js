@@ -21,6 +21,7 @@
                     return data;
                 }
             },
+            'queryByUser': { method:'GET', url:'api/exposicions/user/:userId', params:{userId:'userId'}, isArray: true },
             'update': { method:'PUT' }
         });
     }

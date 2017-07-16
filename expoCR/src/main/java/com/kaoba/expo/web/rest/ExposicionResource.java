@@ -123,6 +123,36 @@ public class ExposicionResource {
     }
 
     /**
+     * GET  /exposicions/userId : get all the exposicions.
+     *
+     * @param userId the id user
+     * @return the ResponseEntity with status 200 (OK) and the list of exposicions in body
+     */
+    @GetMapping("/exposicions/user/{userId}")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionsByUser(@PathVariable Long userId) {
+        log.debug("REST request to get a page of Exposicions");
+        List<ExposicionDTO> page = exposicionService.findAllByUser(userId);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page, null, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /exposicions/byDate/dateExpo : get all the exposicions.
+     *
+     * @param dateExpo the start date
+     * @return the ResponseEntity with status 200 (OK) and the list of exposicions in body
+     */
+    @GetMapping("/exposicions/byDate/{dateExpo}")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionsByDate(@PathVariable String dateExpo) {
+        log.debug("REST request to get a page of Exposicions");
+        List<ExposicionDTO> page = exposicionService.findAllByDate(dateExpo);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page, null, HttpStatus.OK);
+    }
+
+    /**
      * GET  /exposicions/:id : get the "id" exposicion.
      *
      * @param id the id of the exposicionDTO to retrieve

@@ -1,29 +1,23 @@
 
 <div>
-    <!--<h2><span>Usuario</span> {{vm.usuario.id}}</h2>-->
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Nombre</span></dt>
+        <dt><span>Name</span></dt>
         <dd>
             <span>{{vm.usuario.nombre}}</span>
         </dd>
-        <dt><span>Correo</span></dt>
+        <dt><span>Email</span></dt>
         <dd>
             <span>{{vm.usuario.correo}}</span>
         </dd>
-        <!--<dt><span>Timeline</span></dt>
-        <dd>
-            <span ng-repeat="timeline in vm.usuario.timelines">
-                <a ui-sref="timeline-detail({id: timeline.id})">{{timeline.id}}</a>{{$last ? '' : ', '}}
-            </span>
-        </dd>-->
         <dt ng-show="{{vm.isVisble}}"><span>Stand</span></dt>
         <dd ng-show="{{vm.isVisble}}">
             <a ui-sref="stand-detail({id:vm.usuario.standId})">{{vm.usuario.standNombre}}</a>
         </dd>
-        <dt><span>Rol</span></dt>
-        <dd>
-            <span>{{vm.usuario.rolNombre}}</span>
+        <dt ng-hide="{{vm.isVisble}}"> <span>Expositions</span> </dt>
+
+        <dd ng-hide="{{vm.isVisble}}" ng-repeat="exposition in vm.exposicions">
+            <a ui-sref="exposicion-detail({id:exposition.id})">{{exposition.nombre}}</a>
         </dd>
     </dl>
 

@@ -5,9 +5,9 @@
         .module('expoCrApp')
         .controller('StandDetailController', StandDetailController);
 
-    StandDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Stand', 'Usuario', 'Brouchure', 'Click', 'Beacon'];
+    StandDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Stand', 'Usuario', 'Brouchure', 'Click', 'Beacon', 'Exposicion'];
 
-    function StandDetailController($scope, $rootScope, $stateParams, previousState, entity, Stand, Usuario, Brouchure, Click, Beacon) {
+    function StandDetailController($scope, $rootScope, $stateParams, previousState, entity, Stand, Usuario, Brouchure, Click, Beacon, Exposicion) {
         var vm = this;
 
         vm.stand = entity;

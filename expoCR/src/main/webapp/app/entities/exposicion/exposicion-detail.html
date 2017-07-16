@@ -46,6 +46,16 @@
         <dd>
             <a ui-sref="click-detail({id:vm.exposicion.clickId})">{{vm.exposicion.clickId}}</a>
         </dd>
+        <dt><span>Usuario</span></dt>
+        <dd>
+            <a ui-sref="usuario-detail({id:vm.exposicion.usuarioId})">{{vm.exposicion.usuarioNombre}}</a>
+        </dd>
+        <dt><span>Stand</span></dt>
+        <dd>
+            <span ng-repeat="stand in vm.exposicion.stands">
+                <a ui-sref="stand-detail({id: stand.id})">{{stand.nombre}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
     <button type="submit"
             ui-sref="{{ vm.previousState }}"

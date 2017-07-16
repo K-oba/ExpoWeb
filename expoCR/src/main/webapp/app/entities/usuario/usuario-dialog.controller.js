@@ -5,9 +5,9 @@
         .module('expoCrApp')
         .controller('UsuarioDialogController', UsuarioDialogController);
 
-    UsuarioDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Usuario', 'Timeline', 'Pregunta', 'Stand', 'Rol'];
+    UsuarioDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Usuario', 'Timeline', 'Pregunta', 'Stand', 'Rol', 'Exposicion'];
 
-    function UsuarioDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Usuario, Timeline, Pregunta, Stand, Rol) {
+    function UsuarioDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Usuario, Timeline, Pregunta, Stand, Rol, Exposicion) {
          var vm = this;
          vm.doNotMatch = null;
          vm.error = null;
@@ -30,7 +30,6 @@
         }).then(function(stand) {
             vm.stands.push(stand);
         });
-        vm.rols = Rol.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

@@ -4,28 +4,21 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="mySubCategoriaLabel">Create or edit a Sub Categoria</h4>
+        <h4 class="modal-title" id="mySubCategoriaLabel">Create a Sub Category</h4>
     </div>
     <div class="modal-body">
         <div class="form-group">
-            <label class="control-label" for="field_nombre">Nombre</label>
+            <label class="control-label" for="field_nombre">Name</label>
             <input type="text" required class="form-control" name="nombre" id="field_nombre"
                     ng-model="vm.subCategoria.nombre"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_tipo">Tipo</label>
-            <input type="text" required class="form-control" name="tipo" id="field_tipo"
-                    ng-model="vm.subCategoria.tipo"
-                    />
+            <label for="field_categoria">Type</label>
+            <select class="form-control" required id="field_categoria" name="categoria" ng-model="vm.subCategoria.categoriaId" ng-options="categoria.id as categoria.nombre for categoria in vm.categorias"            >
+                <option value=""></option>
+            </select>
         </div>
-
-        <!--<div class="form-group">-->
-            <!--<label for="field_categoria">Categoria</label>-->
-            <!--<select class="form-control" id="field_categoria" name="categoria" ng-model="vm.subCategoria.categoriaId" ng-options="categoria.id as categoria.id for categoria in vm.categorias"            >-->
-                <!--<option value=""></option>-->
-            <!--</select>-->
-        <!--</div>-->
         <!--<div class="form-group">-->
             <!--<label for="field_brouchure">Brouchure</label>-->
             <!--<select class="form-control" id="field_brouchure" name="brouchure" ng-model="vm.subCategoria.brouchureId" ng-options="brouchure.id as brouchure.id for brouchure in vm.brouchures | orderBy:'id'">-->

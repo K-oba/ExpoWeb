@@ -28,6 +28,12 @@
             "otherEntityName": "rol",
             "relationshipType": "many-to-one",
             "otherEntityField": "nombre"
+        },
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "usuario"
         }
     ],
     "fields": [
