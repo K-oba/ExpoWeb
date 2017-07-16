@@ -27,4 +27,6 @@ public interface ExposicionRepository extends JpaRepository<Exposicion,Long> {
 
     @SuppressWarnings("SameParameterValue")
     Page<Exposicion> findByEstadoExpo(boolean isLive, Pageable pageable);
+
+    List<Exposicion> findByFechaInicio(@Param("dateExpo") String dateExpo);
 }
