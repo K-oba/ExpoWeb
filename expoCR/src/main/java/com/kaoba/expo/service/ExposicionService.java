@@ -59,16 +59,24 @@ public class ExposicionService {
     }
 
     /**
-     *  Get all the exposicions.
+
+     *  Get all the live exposicions.
      *
-     *  @param userId the user id
+     *  @param pageable the pagination information
      *  @return the list of entities
      */
+    @Transactional(readOnly = true)
+    public Page<ExposicionDTO> findLive(Pageable pageable) {
+        log.debug("Request to get all the live Exposicions");
+        return exposicionRepository.findByEstadoExpo(true, pageable)
+            .map(exposicionMapper::toDto);
+    }
     @Transactional(readOnly = true)
     public List<ExposicionDTO> findAllByUser(Long userId) {
         log.debug("Request to get all Exposicions");
         List<Exposicion> exposicion = exposicionRepository.findByUsuarioId(userId);
         return exposicionMapper.toDto(exposicion);
+
     }
 
     /**
@@ -92,5 +100,18 @@ public class ExposicionService {
     public void delete(Long id) {
         log.debug("Request to delete Exposicion : {}", id);
         exposicionRepository.delete(id);
+    }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param dateExpo start date
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findAllByDate(String dateExpo) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findByFechaInicio(dateExpo);
+        return exposicionMapper.toDto(exposicion);
     }
 }

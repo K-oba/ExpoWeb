@@ -7,6 +7,7 @@
     Exposicion.$inject = ['$resource'];
 
     function Exposicion ($resource) {
+
         var resourceUrl =  'api/exposicions/:id';
 
         return $resource(resourceUrl, {}, {

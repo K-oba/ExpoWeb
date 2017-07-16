@@ -74,6 +74,34 @@
                 }]
             }
         })
+        .state('exposicion-detail.invite', {
+            parent: 'exposicion',
+            url: '/exposicion/{id}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'Exposicion'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/exposicion/exposicion-invite-dialog.html',
+                    controller: 'ExposicionDialogController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                entity: ['$stateParams', 'Exposicion', function($stateParams, Exposicion) {
+                    return Exposicion.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'exposicion',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
         .state('exposicion-detail.edit', {
             parent: 'exposicion-detail',
             url: '/detail/edit',
@@ -100,38 +128,32 @@
             }]
         })
         .state('exposicion.new', {
-            parent: 'exposicion',
-            url: '/new',
-            data: {
-                authorities: ['ROLE_USER']
-            },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                $uibModal.open({
-                    templateUrl: 'app/entities/exposicion/exposicion-dialog.html',
-                    controller: 'ExposicionDialogController',
-                    controllerAs: 'vm',
-                    backdrop: 'static',
-                    size: 'lg',
-                    resolve: {
-                        entity: function () {
-                            return {
-                                nombre: null,
-                                descripcion: null,
-                                estadoExpo: null,
-                                fechaInicio: null,
-                                fechaFin: null,
-                                coordenadas: null,
-                                id: null
-                            };
+                    parent: 'exposicion',
+                    url: '/new',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    views: {
+                        'content@': {
+                            templateUrl: 'app/entities/exposicion/exposicion-dialog.html',
+                            controller: 'ExposicionDialogController',
+                            controllerAs: 'vm'
                         }
-                    }
-                }).result.then(function() {
-                    $state.go('exposicion', null, { reload: 'exposicion' });
-                }, function() {
-                    $state.go('exposicion');
-                });
-            }]
-        })
+                    },
+                            resolve: {
+                                entity: function () {
+                                    return {
+                                        nombre: null,
+                                        descripcion: null,
+                                        estadoExpo: null,
+                                        fechaInicio: null,
+                                        fechaFin: null,
+                                        coordenadas: null,
+                                        id: null
+                                    };
+                                }
+                            }
+                })
         .state('exposicion.edit', {
             parent: 'exposicion',
             url: '/{id}/edit',
@@ -146,9 +168,9 @@
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Exposicion', function(Exposicion) {
-                            return Exposicion.get({id : $stateParams.id}).$promise;
-                        }]
+                      entity: ['Exposicion', function(Exposicion) {
+                          return Exposicion.get({id : $stateParams.id}).$promise;
+                      }]
                     }
                 }).result.then(function() {
                     $state.go('exposicion', null, { reload: 'exposicion' });

@@ -18,7 +18,7 @@ public interface SubCategoriaMapper extends EntityMapper <SubCategoriaDTO, SubCa
     @Mapping(source = "click.id", target = "clickId")
 
     @Mapping(source = "beacon.id", target = "beaconId")
-    SubCategoriaDTO toDto(SubCategoria subCategoria); 
+    SubCategoriaDTO toDto(SubCategoria subCategoria);
 
     @Mapping(source = "categoriaId", target = "categoria")
 
@@ -27,7 +27,7 @@ public interface SubCategoriaMapper extends EntityMapper <SubCategoriaDTO, SubCa
     @Mapping(source = "clickId", target = "click")
 
     @Mapping(source = "beaconId", target = "beacon")
-    SubCategoria toEntity(SubCategoriaDTO subCategoriaDTO); 
+    SubCategoria toEntity(SubCategoriaDTO subCategoriaDTO);
     default SubCategoria fromId(Long id) {
         if (id == null) {
             return null;

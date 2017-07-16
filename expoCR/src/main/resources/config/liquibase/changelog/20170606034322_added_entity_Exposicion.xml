@@ -74,5 +74,16 @@
 
         <addPrimaryKey columnNames="exposicions_id, amenidades_id" tableName="exposicion_amenidades"/>
         
+        <createTable tableName="exposicion_stand">
+            <column name="stands_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="exposicions_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="exposicions_id, stands_id" tableName="exposicion_stand"/>
+        
     </changeSet>
 </databaseChangeLog>

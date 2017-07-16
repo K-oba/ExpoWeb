@@ -83,15 +83,15 @@ public class ExposicionResourceIntTest {
 
     private Exposicion exposicion;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        ExposicionResource exposicionResource = new ExposicionResource(exposicionService);
-        this.restExposicionMockMvc = MockMvcBuilders.standaloneSetup(exposicionResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setMessageConverters(jacksonMessageConverter).build();
-    }
+//    @Before
+//    public void setup() {
+//        MockitoAnnotations.initMocks(this);
+//        ExposicionResource exposicionResource = new ExposicionResource(exposicionService);
+//        this.restExposicionMockMvc = MockMvcBuilders.standaloneSetup(exposicionResource)
+//            .setCustomArgumentResolvers(pageableArgumentResolver)
+//            .setControllerAdvice(exceptionTranslator)
+//            .setMessageConverters(jacksonMessageConverter).build();
+//    }
 
     /**
      * Create an entity for this test.

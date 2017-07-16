@@ -152,7 +152,7 @@ public class UsuarioResource {
      /**
      * POST  /account/changePassword : change the current user's password
      *
-     * @param password the new password
+     * @param usuario the new password
      * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
      */
     @PostMapping(path = "/changePassword")

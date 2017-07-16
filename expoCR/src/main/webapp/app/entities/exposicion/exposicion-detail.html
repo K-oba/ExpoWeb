@@ -50,8 +50,13 @@
         <dd>
             <a ui-sref="usuario-detail({id:vm.exposicion.usuarioId})">{{vm.exposicion.usuarioNombre}}</a>
         </dd>
+        <dt><span>Stand</span></dt>
+        <dd>
+            <span ng-repeat="stand in vm.exposicion.stands">
+                <a ui-sref="stand-detail({id: stand.id})">{{stand.nombre}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
-
     <button type="submit"
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
@@ -61,5 +66,9 @@
     <button type="button" ui-sref="exposicion-detail.edit({id:vm.exposicion.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-sm-down"> Edit</span>
+    </button>
+    <button type="button" ui-sref="exposicion-detail.invite({id:vm.exposicion.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-send"></span>
+        <span class="hidden-sm-down"> Invite Stand</span>
     </button>
 </div>

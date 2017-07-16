@@ -31,6 +31,13 @@
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "stand"
+        },
+        {
+            "relationshipName": "exposicion",
+            "otherEntityName": "exposicion",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "stand"
         }
     ],
     "fields": [
