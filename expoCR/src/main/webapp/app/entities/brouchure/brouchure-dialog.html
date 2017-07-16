@@ -1,4 +1,11 @@
-
+<style>
+  img{
+    max-width:180px;
+  }
+  input[type=file]{
+  padding:10px;
+  background:white;}
+</style>
 <form name="editForm" role="form" novalidate ng-submit="vm.save()">
 
     <div class="modal-header">
@@ -8,36 +15,64 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.brouchure.id">
+        <!-- <div class="form-group" ng-show="vm.brouchure.id">
             <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.brouchure.id" readonly />
-        </div>
+        </div> -->
         <div class="form-group">
             <label class="control-label" for="field_nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="field_nombre"
-                    ng-model="vm.brouchure.nombre"
-                    />
+            <input type="text" class="form-control" name="nombre" id="field_nombre" ng-model="vm.brouchure.nombre"/>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_descripcion">Descripcion</label>
-            <input type="text" class="form-control" name="descripcion" id="field_descripcion"
-                    ng-model="vm.brouchure.descripcion"
-                    />
+            <input type="text" class="form-control" name="descripcion" id="field_descripcion" ng-model="vm.brouchure.descripcion"/>
         </div>
-        <div class="form-group">
-            <label class="control-label" for="field_urlimagen">Urlimagen</label>
-            <input type="text" class="form-control" name="urlimagen" id="field_urlimagen"
-                    ng-model="vm.brouchure.urlimagen"
-                    />
-        </div>
+        <script>
+        var name = localStorage.getItem("url");
+        var url = document.getElementById("blah");
+        if(name !== ""){
+          url.src = name;
+        }else {
+          url.src= "http://res.cloudinary.com/duxllywl7/image/upload/v1499319117/brochure_tzqddz.png";
+        }
 
+        //$.cloudinary.config({ cloud_name: 'duxllywl7', api_key: '622811722812169'});
+        function readURL(input) {
+        $.cloudinary.config({ cloud_name: 'duxllywl7', api_key: '622811722812169'});
+        if($.fn.cloudinary_fileupload !== undefined) {
+          $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+        }
+               if (input.files && input.files[0]) {
+                   var reader = new FileReader();
+
+                   reader.onload = function (e) {
+                       $('#blah')
+                           .attr('src', e.target.result);
+                           var img = document.getElementById("blah");
+                           //console.log(img.src);
+                           //formData.append(input.files[0].name, input.files[0], filename);
+                   };
+                   reader.readAsDataURL(input.files[0]);
+               }
+             }
+        </script>
+        <div class="form-group">
+          <img id="blah" src="http://placehold.it/180" alt="your image"/>
+          <input id="url" type="file" onchange="readURL(this)"/>
+          <!-- <input id="url" type='file' onchange="readURL(this)" class="cloudinary-fileupload" data-cloudinary-field="image_id"   data-form-data=" ... html-escaped JSON data ... "/> -->
+         </div>
+        <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
+          Select image to upload:
+         <input type="file" name="fileToUpload" id="fileToUpload">
+         <input type="submit" value="Upload Image" name="submit">
+        </form> -->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+        <button id = "buttonSave" type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>

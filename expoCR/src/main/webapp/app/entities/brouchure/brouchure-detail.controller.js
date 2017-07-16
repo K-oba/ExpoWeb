@@ -12,7 +12,16 @@
 
         vm.brouchure = entity;
         vm.previousState = previousState.name;
-
+        //var url = document.getElementById('blah');
+        //url.src = "http://res.cloudinary.com/duxllywl7/image/upload/v1499220419/";
+        function loadData(){
+          if(vm.brouchure.id !== null){
+            localStorage.setItem("url", vm.brouchure.urlimagen);
+          }else {
+            localStorage.setItem("url", "");
+          }
+        }
+        loadData();
         var unsubscribe = $rootScope.$on('expoCrApp:brouchureUpdate', function(event, result) {
             vm.brouchure = result;
         });
