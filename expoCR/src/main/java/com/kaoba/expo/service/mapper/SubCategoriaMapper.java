@@ -13,8 +13,6 @@ public interface SubCategoriaMapper extends EntityMapper <SubCategoriaDTO, SubCa
 
     @Mapping(source = "categoria.id", target = "categoriaId")
 
-    @Mapping(source = "categoria.nombre",target = "categoriaNombre")
-
     @Mapping(source = "brouchure.id", target = "brouchureId")
 
     @Mapping(source = "click.id", target = "clickId")
