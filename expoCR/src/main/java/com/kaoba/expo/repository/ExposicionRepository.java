@@ -23,4 +23,6 @@ public interface ExposicionRepository extends JpaRepository<Exposicion,Long> {
 
     List<Exposicion> findByUsuarioId(@Param("userId") Long id);
 
+    List<Exposicion> findByFechaInicio(@Param("dateExpo") String dateExpo);
+
 }
