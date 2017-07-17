@@ -22,6 +22,7 @@
         vm.exposicion.fechaFin = new Date("dd/MM/yyyy");
         vm.currentDate = new Date();
         vm.save = save;
+        vm.sendInvite = sendInvite;
         vm.distritos = Distrito.query();
         vm.categorias = Categoria.query();
         vm.charlas = Charla.query();
@@ -89,6 +90,25 @@
         }
 
         function onSaveError () {
+            vm.isSaving = false;
+        }
+
+        function sendInvite () {
+            vm.isSaving = true;
+            if (vm.exposicion.id !== null) {
+                Exposicion.update(vm.exposicion, onSaveSuccess, onSaveError);
+            } else {
+                Exposicion.save(vm.exposicion, onSaveSuccess, onSaveError);
+            }
+        }
+
+        function onSendInviteSuccess (result) {
+            $scope.$emit('expoCrApp:exposicionUpdate', result);
+            $uibModalInstance.close(result);
+            vm.isSaving = false;
+        }
+
+        function onSendInviteErrorError () {
             vm.isSaving = false;
         }
 
