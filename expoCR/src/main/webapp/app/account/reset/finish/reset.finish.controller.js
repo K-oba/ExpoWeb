@@ -22,9 +22,11 @@
         $timeout(function (){angular.element('#password').focus();});
 
         function finishReset() {
+
           var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
             //console.log(value);
-            vm.userID = value;
+            vm.userID =   decodeURIComponent(value.replace(/\+/g, '%20'));
+//            console.log(vm.userID);
           });
             //match = url.match(/userID=(\d+)/)
             //console.log(parts);
@@ -37,8 +39,8 @@
                var requestData ={
                  "clave": vm.confirmPassword,
                  "correo": "string",
-                 "id": vm.userID,
-                 "nombre": "string",
+                 "id": 0,
+                 "nombre": vm.userID,
                  "rolId": 0,
                  "rolNombre": "string",
                  "standId": 0,
