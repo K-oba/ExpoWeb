@@ -142,6 +142,9 @@ public class UsuarioService {
             //log.debug("Correo del usuario : {}", usuario);
             return usuarioMapper.toDto(usuario);
     }
+	public boolean checkUserPass(String clave, String clave2) {
+		return passwordEncoder.matches(clave2, clave);
+	}
     
     public  String Encriptar(String texto) {
  
