@@ -45,6 +45,7 @@ public class ExposicionResource {
     private final MailService mailService;
     @Autowired
     UsuarioMapper usuarioMapper;
+    private Object dates;
 
     public ExposicionResource(ExposicionService exposicionService, UsuarioService usuarioService, MailService mailService) {
         this.exposicionService = exposicionService;
@@ -148,6 +149,36 @@ public class ExposicionResource {
     public ResponseEntity<List<ExposicionDTO>> getAllExposicionsByDate(@PathVariable String dateExpo) {
         log.debug("REST request to get a page of Exposicions");
         List<ExposicionDTO> page = exposicionService.findAllByDate(dateExpo);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page, null, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /exposicions/byDate/dateExpo : get all the exposicions.
+     *
+     * @param name
+     * @return the ResponseEntity with status 200 (OK) and the list of exposicions in body
+     */
+    @GetMapping("/exposicions/byFilters/{startDate}/{endDate}/{name}")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionsbyFilters(@PathVariable String name) {
+        log.debug("REST request to get a page of Exposicions");
+        List<ExposicionDTO> page = exposicionService.findAllLikeName(name);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page, null, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /exposicions/byDate/dateExpo : get all the exposicions.
+     *
+     * @param name
+     * @return the ResponseEntity with status 200 (OK) and the list of exposicions in body
+     */
+    @GetMapping("/exposicions/likeName/{name}")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionLikeNombre(@PathVariable String name) {
+        log.debug("REST request to get a page of Exposicions");
+        List<ExposicionDTO> page = exposicionService.findAllLikeName(name);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
         return new ResponseEntity<>(page, null, HttpStatus.OK);
     }
