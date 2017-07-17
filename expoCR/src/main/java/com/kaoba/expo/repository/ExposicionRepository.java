@@ -24,7 +24,13 @@ public interface ExposicionRepository extends JpaRepository<Exposicion,Long> {
 
     List<Exposicion> findByUsuarioId(@Param("userId") Long id);
 
-    List<Exposicion> findByFechaInicio(@Param("dateExpo") String dateExpo);
+    List<Exposicion> findByFechaInicioAndEstadoExpo(@Param("dateExpo") String dateExpo, @Param("expoState") Boolean expoState);
+
+    @Query("SELECT e FROM Exposicion e WHERE e.estadoExpo = :expoState AND UPPER(e.nombre) LIKE CONCAT('%',UPPER(:name),'%') AND STR_TO_DATE(e.fechaInicio,'%d-%m-%Y') BETWEEN STR_TO_DATE(:startDate,'%d-%m-%Y') AND STR_TO_DATE(:endDate,'%d-%m-%Y')")
+    List<Exposicion> findByFilters(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("expoState") Boolean expoState,@Param("name") String name);
+
+    @Query("SELECT e FROM Exposicion e WHERE e.estadoExpo = :expoState AND UPPER(e.nombre) LIKE CONCAT('%',UPPER(:name),'%')")
+    List<Exposicion> findByName(@Param("name") String name, @Param("expoState") Boolean expoState);
 
     @SuppressWarnings("SameParameterValue")
     Page<Exposicion> findByEstadoExpo(boolean isLive, Pageable pageable);

@@ -111,7 +111,34 @@ public class ExposicionService {
     @Transactional(readOnly = true)
     public List<ExposicionDTO> findAllByDate(String dateExpo) {
         log.debug("Request to get all Exposicions");
-        List<Exposicion> exposicion = exposicionRepository.findByFechaInicio(dateExpo);
+        List<Exposicion> exposicion = exposicionRepository.findByFechaInicioAndEstadoExpo(dateExpo,true);
+        return exposicionMapper.toDto(exposicion);
+    }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param startDate start date
+     *  @param endDate end date
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findByFilters(String startDate, String endDate,String name) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findByFilters(startDate,endDate, true, name);
+        return exposicionMapper.toDto(exposicion);
+    }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param name name expo
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findAllLikeName(String name) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findByName(name, true);
         return exposicionMapper.toDto(exposicion);
     }
 }
