@@ -1,8 +1,11 @@
 package com.kaoba.expo.service;
 
+import com.kaoba.expo.domain.Beacon;
 import com.kaoba.expo.domain.Exposicion;
+import com.kaoba.expo.domain.Stand;
 import com.kaoba.expo.repository.ExposicionRepository;
 import com.kaoba.expo.service.dto.ExposicionDTO;
+import com.kaoba.expo.service.dto.StandDTO;
 import com.kaoba.expo.service.mapper.ExposicionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,7 +92,18 @@ public class ExposicionService {
     public ExposicionDTO findOne(Long id) {
         log.debug("Request to get Exposicion : {}", id);
         Exposicion exposicion = exposicionRepository.findOneWithEagerRelationships(id);
-        return exposicionMapper.toDto(exposicion);
+        ExposicionDTO e = exposicionMapper.toDto(exposicion);
+
+        for (StandDTO dto : e.getStands()) {
+            for (Stand stand : exposicion.getStands()) {
+                if (dto.getId()==stand.getId()){
+                    dto.getBeacon().setId(stand.getBeacon().getId());
+                    dto.getBeacon().setUuid(stand.getBeacon().getUuid());
+                }
+            }
+        }
+
+        return e;
     }
 
     /**
