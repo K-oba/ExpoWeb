@@ -71,6 +71,12 @@ public class StandDTO implements Serializable {
         this.beaconId = beaconId;
     }
 
+    public BeaconDTO getBeacon(){
+        return this.beacon;
+    }
+
+    public BeaconDTO beacon= new BeaconDTO();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
