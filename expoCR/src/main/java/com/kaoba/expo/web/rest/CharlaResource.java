@@ -123,4 +123,13 @@ public class CharlaResource {
         charlaService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/charlasByExpo/{expoId}")
+    @Timed
+    public ResponseEntity<List<CharlaDTO>> getCharlaByExpo(@PathVariable Long expoId) {
+        log.debug("REST request to get Charla : {}", expoId);
+        //CharlaDTO charlaDTO = charlaService.getCharlaByExpo(expoId);
+        List<CharlaDTO> list = charlaService.getCharlaByExpo(expoId);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(list));
+    }
 }
