@@ -143,6 +143,21 @@ public class ExposicionService {
         return exposicionMapper.toDto(exposicion);
     }
 
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param startDate start date
+     *  @param endDate end date
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findBetweenDates(String startDate, String endDate) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findBetweenDates(startDate,endDate, true);
+        return exposicionMapper.toDto(exposicion);
+    }
+
     /**
      *  Get all the exposicions.
      *

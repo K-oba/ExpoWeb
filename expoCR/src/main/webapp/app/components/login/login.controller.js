@@ -18,6 +18,7 @@
         vm.register = register;
         vm.rememberMe = true;
         vm.requestResetPassword = requestResetPassword;
+        vm.register = register;
         vm.username = null;
 
         $timeout(function (){angular.element('#username').focus();});
@@ -68,6 +69,11 @@
         function requestResetPassword () {
             $uibModalInstance.dismiss('cancel');
             $state.go('requestReset');
+        }
+
+        function register(){
+            $uibModalInstance.dismiss('cance');
+            $state.go('usuario.new');
         }
     }
 })();

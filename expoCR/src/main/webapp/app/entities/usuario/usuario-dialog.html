@@ -1,12 +1,9 @@
 <div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-            ng-click="vm.clear()">&times;</button>
             <h1>Registration</h1>
-
             <div class="alert alert-success" ng-show="vm.success">
-                <strong>Register Succesfull!</strong> Check your email.
+                <strong>Register Succesfull!</strong>
             </div>
 
             <div class="alert alert-danger" ng-show="vm.errorEmailExists">
@@ -53,7 +50,6 @@
                     Your password cannot be longer than 50 characters.
                 </p>
             </div>
-            <password-strength-bar password-to-check="vm.usuario.clave"></password-strength-bar>
         </div>
 
         <div class="form-group">
@@ -75,24 +71,6 @@
                 </p>
             </div>
         </div>
-
-        <!--<div class="form-group">-->
-            <!--<label for="field_rol">Rol</label>-->
-            <!--<select class="form-control" id="field_rol" required name="rol" ng-model="vm.usuario.rolId" ng-options="rol.id as rol.nombre for rol in vm.rols | filter:rol.id=1" >-->
-            <!--</select>-->
-        <!--</div>-->
-
-    <!--<div class="form-group">
-        <label for="field_timeline">Timeline</label>
-        <select class="form-control" id="field_timeline" multiple name="timeline" ng-model="vm.usuario.timelines" ng-options="timeline as timeline.id for timeline in vm.timelines track by timeline.id"></select>
-    </div>
-    <div class="form-group">
-        <label for="field_stand">Stand</label>
-        <select class="form-control" id="field_stand" name="stand" ng-model="vm.usuario.standId" ng-options="stand.id as stand.nombre for stand in vm.stands">
-            <option value=""></option>
-        </select>
-    </div>-->
-
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>

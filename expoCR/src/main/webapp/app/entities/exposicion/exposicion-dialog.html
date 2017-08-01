@@ -49,15 +49,22 @@
                            ng-model="vm.subCategoria.nombre" />
                     <span class="input-group-btn">
                 <button class="btn btn-primary"
-                        ng-click="vm.saveSubCategory()">Add</button>
+                        ng-click="vm.addSubCategoria(vm.subCategoria.nombre)">Add</button>
             </span>
                 </div>
+                <br>
+                <dd class="input-group" ng-repeat="item in vm.subCategoriaToSave">
+                    <a>{{item}}</a>
+                </dd>
+                <br>
         </div>
             <div ng-switch-when="Stand">
                 <h1>PARTE</h1>
                 <h2>De ROBERT.</h2>
             </div>
+            <br>
             <label class="control-label">Search location</label>
+            <br>
         <div class="input-group">
             <input name="place" type="text" class="form-control"
                ng-model="vm.searchPlace" required autofocus />
