@@ -19,5 +19,6 @@ public interface CharlaRepository extends JpaRepository<Charla,Long> {
 
     @Query("select charla from Charla charla left join fetch charla.preguntas where charla.id =:id")
     Charla findOneWithEagerRelationships(@Param("id") Long id);
+    
 
 }
