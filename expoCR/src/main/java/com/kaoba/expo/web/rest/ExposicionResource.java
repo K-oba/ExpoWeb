@@ -161,9 +161,23 @@ public class ExposicionResource {
      */
     @GetMapping("/exposicions/byFilters/{startDate}/{endDate}/{name}")
     @Timed
-    public ResponseEntity<List<ExposicionDTO>> getAllExposicionsbyFilters(@PathVariable String name) {
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionsbyFilters(@PathVariable String startDate, @PathVariable String endDate, @PathVariable String name) {
         log.debug("REST request to get a page of Exposicions");
-        List<ExposicionDTO> page = exposicionService.findAllLikeName(name);
+        List<ExposicionDTO> page = exposicionService.findByFilters(startDate,endDate,name);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page, null, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /exposicions/byDate/dateExpo : get all the exposicions.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of exposicions in body
+     */
+    @GetMapping("/exposicions/betweenDates/{startDate}/{endDate}")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionsBetweenDates(@PathVariable String startDate, @PathVariable String endDate) {
+        log.debug("REST request to get a page of Exposicions");
+        List<ExposicionDTO> page = exposicionService.findBetweenDates(startDate,endDate);
 //        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
         return new ResponseEntity<>(page, null, HttpStatus.OK);
     }

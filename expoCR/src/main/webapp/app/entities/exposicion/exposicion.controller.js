@@ -17,13 +17,17 @@
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
 
-        loadAll();
+        loadAllByUser();
+
+        function loadAllByUser(){
+          vm.exposicions = Exposicion.queryByUser({userId:5});
+        }
+
+//        loadAll();
 
         function loadAll () {
-            Exposicion.query({
-                page: pagingParams.page - 1,
-                size: vm.itemsPerPage,
-                sort: sort()
+            Exposicion.queryByUser({
+                userId:5
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];

@@ -28,14 +28,6 @@
         <dd>
             <span>{{vm.exposicion.coordenadas}}</span>
         </dd>
-        <dt><span>Distrito</span></dt>
-        <dd>
-            <a ui-sref="distrito-detail({id:vm.exposicion.distritoId})">{{vm.exposicion.distritoId}}</a>
-        </dd>
-        <dt><span>Categoria</span></dt>
-        <dd>
-            <a ui-sref="categoria-detail({id:vm.exposicion.categoriaId})">{{vm.exposicion.categoriaId}}</a>
-        </dd>
         <dt><span>Amenidades</span></dt>
         <dd>
             <span ng-repeat="amenidades in vm.exposicion.amenidades">
