@@ -29,6 +29,8 @@ public class ExposicionDTO implements Serializable {
 
     private Long categoriaId;
 
+    private String categoriaNombre;
+
     private Set<AmenidadesDTO> amenidades = new HashSet<>();
 
     private Long clickId;
@@ -110,6 +112,10 @@ public class ExposicionDTO implements Serializable {
     public void setCategoriaId(Long categoriaId) {
         this.categoriaId = categoriaId;
     }
+
+    public String getCategoriaNombre (){return categoriaNombre;}
+
+    public  void setCategoriaNombre (String categoriaNombre){ this.categoriaNombre = categoriaNombre;}
 
     public Set<AmenidadesDTO> getAmenidades() {
         return amenidades;

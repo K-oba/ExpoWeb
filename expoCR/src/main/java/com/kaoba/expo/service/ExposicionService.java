@@ -170,4 +170,16 @@ public class ExposicionService {
         List<Exposicion> exposicion = exposicionRepository.findByName(name, true);
         return exposicionMapper.toDto(exposicion);
     }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param date name expo
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findAllByCurrentDate(String date) {
+        log.debug("Request to get all Exposicions");
+        return exposicionMapper.toDto(exposicionRepository.findAllByDay(date, date));
+    }
 }
