@@ -52,8 +52,6 @@
         vm.addSubCategoria = function(name){
             if(!vm.subCategoriaToSave.includes(name))vm.subCategoriaToSave.push(name);
             vm.checked = true;
-            console.log(vm.exposicion.amenidades);
-            console.log(vm.amenities);
         }
 
         vm.saveSubCategory = function(){
@@ -130,6 +128,11 @@
         function onSendInviteErrorError () {
             vm.isSaving = false;
         }
+
+        vm.removeSubCategory = function (index){
+            vm.subCategoriaToSave.splice(index, 1);
+            console.log(vm.subCategoriaToSave);
+          }
 
 
     }

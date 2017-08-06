@@ -155,30 +155,32 @@
                             }
                 })
         .state('exposicion.edit', {
-            parent: 'exposicion',
-            url: '/{id}/edit',
-            data: {
-                authorities: ['ROLE_USER']
-            },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                $uibModal.open({
-                    templateUrl: 'app/entities/exposicion/exposicion-dialog.html',
-                    controller: 'ExposicionDialogController',
-                    controllerAs: 'vm',
-                    backdrop: 'static',
-                    size: 'lg',
-                    resolve: {
-                      entity: ['Exposicion', function(Exposicion) {
-                          return Exposicion.get({id : $stateParams.id}).$promise;
-                      }]
-                    }
-                }).result.then(function() {
-                    $state.go('exposicion', null, { reload: 'exposicion' });
-                }, function() {
-                    $state.go('^');
-                });
-            }]
-        })
+                    parent: 'exposicion',
+                    url: '/{id}/edit',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                   views: {
+                                'content@': {
+                                    templateUrl: 'app/entities/exposicion/exposicion-dialog.html',
+                                    controller: 'ExposicionDialogController',
+                                    controllerAs: 'vm'
+                                }
+                            },
+                                    resolve: {
+                                        entity: function () {
+                                            return {
+                                                nombre: null,
+                                                descripcion: null,
+                                                estadoExpo: null,
+                                                fechaInicio: null,
+                                                fechaFin: null,
+                                                coordenadas: null,
+                                                id: null
+                                            };
+                                        }
+                                    }
+                })
         .state('exposicion.delete', {
             parent: 'exposicion',
             url: '/{id}/delete',

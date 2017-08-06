@@ -198,6 +198,21 @@ public class ExposicionResource {
     }
 
     /**
+     * GET  /exposicions/byDate/dateExpo : get all the exposicions.
+     *
+     * @param day
+     * @return the ResponseEntity with status 200 (OK) and the list of exposicions in body
+     */
+    @GetMapping("/exposicions/byDay/{day}")
+    @Timed
+    public ResponseEntity<List<ExposicionDTO>> getAllExposicionByCurrentDay(@PathVariable String day) {
+        log.debug("REST request to get a page of Exposicions");
+        List<ExposicionDTO> page = exposicionService.findAllByCurrentDate(day);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/exposicions");
+        return new ResponseEntity<>(page, null, HttpStatus.OK);
+    }
+
+    /**
      * GET  /exposicions/:id : get the "id" exposicion.
      *
      * @param id the id of the exposicionDTO to retrieve

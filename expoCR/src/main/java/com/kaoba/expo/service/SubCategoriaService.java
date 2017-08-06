@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Service Implementation for managing SubCategoria.
@@ -54,6 +56,12 @@ public class SubCategoriaService {
         log.debug("Request to get all SubCategorias");
         return subCategoriaRepository.findAll(pageable)
             .map(subCategoriaMapper::toDto);
+    }
+
+    @Transactional(readOnly = true)
+    public List<SubCategoriaDTO> findByExpo(Long expoId) {
+        log.debug("Request to get all SubCategorias");
+        return subCategoriaMapper.toDto(subCategoriaRepository.findByExpo(expoId));
     }
 
     /**

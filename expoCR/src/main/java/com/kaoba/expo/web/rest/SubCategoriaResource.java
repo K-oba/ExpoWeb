@@ -111,6 +111,20 @@ public class SubCategoriaResource {
     }
 
     /**
+     * GET  /sub-categorias/:expoId : get the "id" subCategoria.
+     *
+     * @param expoId the id of the expo to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the subCategoriaDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/sub-categoriaByExpo/{expoId}")
+    @Timed
+    public ResponseEntity<List<SubCategoriaDTO>> getSubCategoriaByExpo(@PathVariable Long expoId) {
+        log.debug("REST request to get SubCategoria : {}", expoId);
+        List<SubCategoriaDTO> subCategoriaDTO = subCategoriaService.findByExpo(expoId);
+        return new ResponseEntity<>(subCategoriaDTO, null, HttpStatus.OK);
+    }
+
+    /**
      * DELETE  /sub-categorias/:id : delete the "id" subCategoria.
      *
      * @param id the id of the subCategoriaDTO to delete
