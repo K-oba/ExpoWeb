@@ -1,39 +1,11 @@
-
-<div>
-    <h2><span>Stand</span> {{vm.stand.id}}</h2>
+    <div>
+    <h2><span>Stand</span> {{vm.stand.nombre}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Nombre</span></dt>
         <dd>
-            <span>{{vm.stand.nombre}}</span>
-        </dd>
-        <dt><span>Tipo</span></dt>
-        <dd>
-            <span>{{vm.stand.tipo}}</span>
-        </dd>
-        <dt><span>Brouchure</span></dt>
-        <dd>
-            <a ui-sref="brouchure-detail({id:vm.stand.brouchureId})">{{vm.stand.brouchureId}}</a>
-        </dd>
-        <dt><span>Click</span></dt>
-        <dd>
-            <a ui-sref="click-detail({id:vm.stand.clickId})">{{vm.stand.clickId}}</a>
-        </dd>
-        <dt><span>Beacon</span></dt>
-        <dd>
-            <a ui-sref="beacon-detail({id:vm.stand.beaconId})">{{vm.stand.beaconId}}</a>
+            <img id="blah" alt="your image" />
+            <!-- </div> -->
         </dd>
     </dl>
-
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
-
-    <button type="button" ui-sref="stand-detail.edit({id:vm.stand.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
-    </button>
+    <br>
 </div>

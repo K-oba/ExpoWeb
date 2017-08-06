@@ -20,6 +20,7 @@
                     return data;
                 }
             },
+            'queryByExpo': { method:'GET', url:'api/sub-categoriaByExpo/:expoId', params:{userId:'expoId'}, isArray: true },
             'update': { method:'PUT' }
         });
     }

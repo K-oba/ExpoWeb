@@ -14,6 +14,7 @@ public interface ExposicionMapper extends EntityMapper <ExposicionDTO, Exposicio
     @Mapping(source = "distrito.id", target = "distritoId")
 
     @Mapping(source = "categoria.id", target = "categoriaId")
+    @Mapping(source = "categoria.nombre", target = "categoriaNombre")
 
     @Mapping(source = "click.id", target = "clickId")
 

@@ -10,7 +10,7 @@
              this.init = function() {
                  var options = {
                        center: new google.maps.LatLng(9.9280694, -84.09072459999999),
-                     zoom: 13,
+                     zoom: 14,
                      disableDefaultUI: true
                  }
                  this.map = new google.maps.Map(
@@ -38,6 +38,22 @@
                      animation: google.maps.Animation.DROP
                  });
                  this.map.setCenter(res.geometry.location);
+             }
+
+             this.addMarkerByLatLng = function (latLng){
+                 if(this.marker) this.marker.setMap(null);
+                    this.marker = new google.maps.Marker({
+                        map: this.map,
+                        position: latLng,
+                        animation: google.maps.Animation.DROP
+                  });
+                  this.map.setCenter(latLng);
+             }
+
+             this.infoPosition = function(address){
+                 var infowindow = new google.maps.InfoWindow;
+                infowindow.setContent(address);
+                infowindow.open(this.map, this.marker);
              }
 
          };
