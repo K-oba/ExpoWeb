@@ -96,7 +96,7 @@ public class ExposicionService {
 
         for (StandDTO dto : e.getStands()) {
             for (Stand stand : exposicion.getStands()) {
-                if (dto.getId()==stand.getId()){
+                if (dto.getId()==stand.getId() && stand.getBeacon()!=null){
                     dto.getBeacon().setId(stand.getBeacon().getId());
                     dto.getBeacon().setUuid(stand.getBeacon().getUuid());
                 }
