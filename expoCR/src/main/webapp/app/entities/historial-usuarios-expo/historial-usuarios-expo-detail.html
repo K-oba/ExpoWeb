@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span>Historial Usuarios Expo</span> {{vm.historialUsuariosExpo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Id Expo</span></dt>
+        <dd>
+            <span>{{vm.historialUsuariosExpo.idExpo}}</span>
+        </dd>
+        <dt><span>Device Id</span></dt>
+        <dd>
+            <span>{{vm.historialUsuariosExpo.deviceId}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="historial-usuarios-expo-detail.edit({id:vm.historialUsuariosExpo.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>
