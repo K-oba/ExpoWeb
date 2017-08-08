@@ -39,7 +39,9 @@ public class HistorialUsuariosExpoService {
     public HistorialUsuariosExpoDTO save(HistorialUsuariosExpoDTO historialUsuariosExpoDTO) {
         log.debug("Request to save HistorialUsuariosExpo : {}", historialUsuariosExpoDTO);
         HistorialUsuariosExpo historialUsuariosExpo = historialUsuariosExpoMapper.toEntity(historialUsuariosExpoDTO);
-        historialUsuariosExpo = historialUsuariosExpoRepository.save(historialUsuariosExpo);
+        if (historialUsuariosExpoRepository.findByDeviceId(historialUsuariosExpoDTO.getDeviceId())==null) {
+            historialUsuariosExpo = historialUsuariosExpoRepository.save(historialUsuariosExpo);
+        }
         return historialUsuariosExpoMapper.toDto(historialUsuariosExpo);
     }
 
