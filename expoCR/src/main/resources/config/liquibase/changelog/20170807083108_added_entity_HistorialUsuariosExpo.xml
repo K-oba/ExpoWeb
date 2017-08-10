@@ -30,8 +30,21 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="stand_id" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="subcategory_id" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="fecha" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="historial_usuarios_expo" columnName="fecha" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

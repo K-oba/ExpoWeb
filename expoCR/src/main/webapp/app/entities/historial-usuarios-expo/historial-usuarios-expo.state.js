@@ -117,6 +117,9 @@
                             return {
                                 idExpo: null,
                                 deviceId: null,
+                                standId: null,
+                                subcategoryId: null,
+                                fecha: null,
                                 id: null
                             };
                         }

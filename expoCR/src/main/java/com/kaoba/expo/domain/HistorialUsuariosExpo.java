@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -26,6 +27,15 @@ public class HistorialUsuariosExpo implements Serializable {
 
     @Column(name = "device_id")
     private String deviceId;
+
+    @Column(name = "stand_id")
+    private Integer standId;
+
+    @Column(name = "subcategory_id")
+    private Integer subcategoryId;
+
+    @Column(name = "fecha")
+    private Instant fecha;
 
     public Long getId() {
         return id;
@@ -61,6 +71,45 @@ public class HistorialUsuariosExpo implements Serializable {
         this.deviceId = deviceId;
     }
 
+    public Integer getStandId() {
+        return standId;
+    }
+
+    public HistorialUsuariosExpo standId(Integer standId) {
+        this.standId = standId;
+        return this;
+    }
+
+    public void setStandId(Integer standId) {
+        this.standId = standId;
+    }
+
+    public Integer getSubcategoryId() {
+        return subcategoryId;
+    }
+
+    public HistorialUsuariosExpo subcategoryId(Integer subcategoryId) {
+        this.subcategoryId = subcategoryId;
+        return this;
+    }
+
+    public void setSubcategoryId(Integer subcategoryId) {
+        this.subcategoryId = subcategoryId;
+    }
+
+    public Instant getFecha() {
+        return fecha;
+    }
+
+    public HistorialUsuariosExpo fecha(Instant fecha) {
+        this.fecha = fecha;
+        return this;
+    }
+
+    public void setFecha(Instant fecha) {
+        this.fecha = fecha;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -87,6 +136,9 @@ public class HistorialUsuariosExpo implements Serializable {
             "id=" + getId() +
             ", idExpo='" + getIdExpo() + "'" +
             ", deviceId='" + getDeviceId() + "'" +
+            ", standId='" + getStandId() + "'" +
+            ", subcategoryId='" + getSubcategoryId() + "'" +
+            ", fecha='" + getFecha() + "'" +
             "}";
     }
 }

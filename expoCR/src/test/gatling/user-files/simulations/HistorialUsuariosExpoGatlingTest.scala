@@ -67,7 +67,7 @@ class HistorialUsuariosExpoGatlingTest extends Simulation {
             .exec(http("Create new historialUsuariosExpo")
             .post("/api/historial-usuarios-expos")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "idExpo":"0", "deviceId":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "idExpo":"0", "deviceId":"SAMPLE_TEXT", "standId":"0", "subcategoryId":"0", "fecha":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_historialUsuariosExpo_url"))).exitHereIfFailed
             .pause(10)

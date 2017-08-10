@@ -9,6 +9,18 @@
         {
             "fieldName": "deviceId",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "standId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "subcategoryId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
         }
     ],
     "changelogDate": "20170807083108",

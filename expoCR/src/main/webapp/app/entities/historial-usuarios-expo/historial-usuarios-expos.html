@@ -21,6 +21,9 @@
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="idExpo"><span>Id Expo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="deviceId"><span>Device Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="standId"><span>Stand Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="subcategoryId"><span>Subcategory Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fecha"><span>Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -29,6 +32,9 @@
                     <td><a ui-sref="historial-usuarios-expo-detail({id:historialUsuariosExpo.id})">{{historialUsuariosExpo.id}}</a></td>
                     <td>{{historialUsuariosExpo.idExpo}}</td>
                     <td>{{historialUsuariosExpo.deviceId}}</td>
+                    <td>{{historialUsuariosExpo.standId}}</td>
+                    <td>{{historialUsuariosExpo.subcategoryId}}</td>
+                    <td>{{historialUsuariosExpo.fecha | date:'medium'}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

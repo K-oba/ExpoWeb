@@ -4,9 +4,9 @@
         .module('expoCrApp')
         .factory('HistorialUsuariosExpo', HistorialUsuariosExpo);
 
-    HistorialUsuariosExpo.$inject = ['$resource'];
+    HistorialUsuariosExpo.$inject = ['$resource', 'DateUtils'];
 
-    function HistorialUsuariosExpo ($resource) {
+    function HistorialUsuariosExpo ($resource, DateUtils) {
         var resourceUrl =  'api/historial-usuarios-expos/:id';
 
         return $resource(resourceUrl, {}, {
@@ -16,6 +16,7 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.fecha = DateUtils.convertDateTimeFromServer(data.fecha);
                     }
                     return data;
                 }

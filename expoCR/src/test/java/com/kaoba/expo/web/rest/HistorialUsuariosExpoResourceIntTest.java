@@ -24,6 +24,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,6 +47,15 @@ public class HistorialUsuariosExpoResourceIntTest {
 
     private static final String DEFAULT_DEVICE_ID = "AAAAAAAAAA";
     private static final String UPDATED_DEVICE_ID = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_STAND_ID = 1;
+    private static final Integer UPDATED_STAND_ID = 2;
+
+    private static final Integer DEFAULT_SUBCATEGORY_ID = 1;
+    private static final Integer UPDATED_SUBCATEGORY_ID = 2;
+
+    private static final Instant DEFAULT_FECHA = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_FECHA = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private HistorialUsuariosExpoRepository historialUsuariosExpoRepository;
@@ -90,7 +101,10 @@ public class HistorialUsuariosExpoResourceIntTest {
     public static HistorialUsuariosExpo createEntity(EntityManager em) {
         HistorialUsuariosExpo historialUsuariosExpo = new HistorialUsuariosExpo()
             .idExpo(DEFAULT_ID_EXPO)
-            .deviceId(DEFAULT_DEVICE_ID);
+            .deviceId(DEFAULT_DEVICE_ID)
+            .standId(DEFAULT_STAND_ID)
+            .subcategoryId(DEFAULT_SUBCATEGORY_ID)
+            .fecha(DEFAULT_FECHA);
         return historialUsuariosExpo;
     }
 
@@ -117,6 +131,9 @@ public class HistorialUsuariosExpoResourceIntTest {
         HistorialUsuariosExpo testHistorialUsuariosExpo = historialUsuariosExpoList.get(historialUsuariosExpoList.size() - 1);
         assertThat(testHistorialUsuariosExpo.getIdExpo()).isEqualTo(DEFAULT_ID_EXPO);
         assertThat(testHistorialUsuariosExpo.getDeviceId()).isEqualTo(DEFAULT_DEVICE_ID);
+        assertThat(testHistorialUsuariosExpo.getStandId()).isEqualTo(DEFAULT_STAND_ID);
+        assertThat(testHistorialUsuariosExpo.getSubcategoryId()).isEqualTo(DEFAULT_SUBCATEGORY_ID);
+        assertThat(testHistorialUsuariosExpo.getFecha()).isEqualTo(DEFAULT_FECHA);
     }
 
     @Test
@@ -151,7 +168,10 @@ public class HistorialUsuariosExpoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(historialUsuariosExpo.getId().intValue())))
             .andExpect(jsonPath("$.[*].idExpo").value(hasItem(DEFAULT_ID_EXPO)))
-            .andExpect(jsonPath("$.[*].deviceId").value(hasItem(DEFAULT_DEVICE_ID.toString())));
+            .andExpect(jsonPath("$.[*].deviceId").value(hasItem(DEFAULT_DEVICE_ID.toString())))
+            .andExpect(jsonPath("$.[*].standId").value(hasItem(DEFAULT_STAND_ID)))
+            .andExpect(jsonPath("$.[*].subcategoryId").value(hasItem(DEFAULT_SUBCATEGORY_ID)))
+            .andExpect(jsonPath("$.[*].fecha").value(hasItem(DEFAULT_FECHA.toString())));
     }
 
     @Test
@@ -166,7 +186,10 @@ public class HistorialUsuariosExpoResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(historialUsuariosExpo.getId().intValue()))
             .andExpect(jsonPath("$.idExpo").value(DEFAULT_ID_EXPO))
-            .andExpect(jsonPath("$.deviceId").value(DEFAULT_DEVICE_ID.toString()));
+            .andExpect(jsonPath("$.deviceId").value(DEFAULT_DEVICE_ID.toString()))
+            .andExpect(jsonPath("$.standId").value(DEFAULT_STAND_ID))
+            .andExpect(jsonPath("$.subcategoryId").value(DEFAULT_SUBCATEGORY_ID))
+            .andExpect(jsonPath("$.fecha").value(DEFAULT_FECHA.toString()));
     }
 
     @Test
@@ -188,7 +211,10 @@ public class HistorialUsuariosExpoResourceIntTest {
         HistorialUsuariosExpo updatedHistorialUsuariosExpo = historialUsuariosExpoRepository.findOne(historialUsuariosExpo.getId());
         updatedHistorialUsuariosExpo
             .idExpo(UPDATED_ID_EXPO)
-            .deviceId(UPDATED_DEVICE_ID);
+            .deviceId(UPDATED_DEVICE_ID)
+            .standId(UPDATED_STAND_ID)
+            .subcategoryId(UPDATED_SUBCATEGORY_ID)
+            .fecha(UPDATED_FECHA);
         HistorialUsuariosExpoDTO historialUsuariosExpoDTO = historialUsuariosExpoMapper.toDto(updatedHistorialUsuariosExpo);
 
         restHistorialUsuariosExpoMockMvc.perform(put("/api/historial-usuarios-expos")
@@ -202,6 +228,9 @@ public class HistorialUsuariosExpoResourceIntTest {
         HistorialUsuariosExpo testHistorialUsuariosExpo = historialUsuariosExpoList.get(historialUsuariosExpoList.size() - 1);
         assertThat(testHistorialUsuariosExpo.getIdExpo()).isEqualTo(UPDATED_ID_EXPO);
         assertThat(testHistorialUsuariosExpo.getDeviceId()).isEqualTo(UPDATED_DEVICE_ID);
+        assertThat(testHistorialUsuariosExpo.getStandId()).isEqualTo(UPDATED_STAND_ID);
+        assertThat(testHistorialUsuariosExpo.getSubcategoryId()).isEqualTo(UPDATED_SUBCATEGORY_ID);
+        assertThat(testHistorialUsuariosExpo.getFecha()).isEqualTo(UPDATED_FECHA);
     }
 
     @Test
