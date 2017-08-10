@@ -11,6 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Date;
+
 
 /**
  * Service Implementation for managing HistorialUsuariosExpo.
@@ -40,6 +44,7 @@ public class HistorialUsuariosExpoService {
         log.debug("Request to save HistorialUsuariosExpo : {}", historialUsuariosExpoDTO);
         HistorialUsuariosExpo historialUsuariosExpo = historialUsuariosExpoMapper.toEntity(historialUsuariosExpoDTO);
         if (historialUsuariosExpoRepository.findByDeviceId(historialUsuariosExpoDTO.getDeviceId())==null) {
+            historialUsuariosExpo.setFecha(Instant.now());
             historialUsuariosExpo = historialUsuariosExpoRepository.save(historialUsuariosExpo);
         }
         return historialUsuariosExpoMapper.toDto(historialUsuariosExpo);
