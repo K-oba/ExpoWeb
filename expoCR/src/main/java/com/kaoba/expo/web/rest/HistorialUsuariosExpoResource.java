@@ -123,4 +123,32 @@ public class HistorialUsuariosExpoResource {
         historialUsuariosExpoService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    /**
+     * GET  /historial-usuarios-expos/result/:idExpo.
+     *
+     * @param idExpo
+     * @return the ResponseEntity with status 200 (OK) and with body the historialUsuariosExpoDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/historial-usuarios-expos/result/{idExpo}")
+    @Timed
+    public int getPersonsExpo(@PathVariable int idExpo) {
+        log.debug("REST request to get cantPersons : {}", idExpo);
+        int cant = historialUsuariosExpoService.getPersonsExpo(idExpo);
+        return cant;
+    }
+
+    /**
+     * GET  /historial-usuarios-expos/stands/:idExpo.
+     *
+     * @param idExpo
+     * @return the ResponseEntity with status 200 (OK) and with body the historialUsuariosExpoDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/historial-usuarios-expos/{idExpo}/{idStand}")
+    @Timed
+    public int getPersonsExpo(@PathVariable int idExpo,@PathVariable int idStand) {
+        log.debug("REST request to get cantPersonsStand : {}", idExpo);
+        int cant = historialUsuariosExpoService.getPersonsStandsExpo(idExpo,idStand);
+        return cant;
+    }
 }
