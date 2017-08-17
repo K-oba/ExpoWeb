@@ -81,6 +81,7 @@ public class CacheConfiguration {
             cm.createCache(com.kaoba.expo.domain.Usuario.class.getName() + ".exposicions", jcacheConfiguration);
             cm.createCache(com.kaoba.expo.domain.Stand.class.getName() + ".exposicions", jcacheConfiguration);
             cm.createCache(com.kaoba.expo.domain.Exposicion.class.getName() + ".stands", jcacheConfiguration);
+            cm.createCache(com.kaoba.expo.domain.HistorialUsuariosExpo.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

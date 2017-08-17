@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('expoCrApp')
-        .factory('SubCategoria', SubCategoria);
+        .factory('HistorialUsuariosExpo', HistorialUsuariosExpo);
 
-    SubCategoria.$inject = ['$resource'];
+    HistorialUsuariosExpo.$inject = ['$resource', 'DateUtils'];
 
-    function SubCategoria ($resource) {
-        var resourceUrl =  'api/sub-categorias/:id';
+    function HistorialUsuariosExpo ($resource, DateUtils) {
+        var resourceUrl =  'api/historial-usuarios-expos/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -16,11 +16,11 @@
                 transformResponse: function (data) {
                     if (data) {
                         data = angular.fromJson(data);
+                        data.fecha = DateUtils.convertDateTimeFromServer(data.fecha);
                     }
                     return data;
                 }
             },
-            'queryByExpo': { method:'GET', url:'api/sub-categoriaByExpo/:expoId', params:{userId:'expoId'}, isArray: true },
             'update': { method:'PUT' }
         });
     }

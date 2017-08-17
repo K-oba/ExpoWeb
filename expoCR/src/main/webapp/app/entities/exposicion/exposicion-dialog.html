@@ -1,7 +1,5 @@
 
 <form name="editForm" role="form" novalidate>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                ng-click="vm.clear()">&times;</button>
         <h4 class="modal-title" id="myExposicionLabel">Create Exposition</h4>
         <div class="form-group">
             <label class="control-label" for="field_nombre">Name</label>
@@ -49,15 +47,23 @@
                            ng-model="vm.subCategoria.nombre" />
                     <span class="input-group-btn">
                 <button class="btn btn-primary"
-                        ng-click="vm.saveSubCategory()">Add</button>
+                        ng-click="vm.addSubCategoria(vm.subCategoria.nombre)">Add</button>
             </span>
                 </div>
+                <br>
+                <dd class="input-group" ng-repeat="item in vm.subCategoriaToSave">
+                       <button type="button"  style="float:right;" aria-hidden="true"
+                            ng-click="vm.removeSubCategory($index)">&times;</button>
+                        <span>{{item}}</span>
+                </dd>
+                <br>
         </div>
             <div ng-switch-when="Stand">
                 <h1>PARTE</h1>
                 <h2>De ROBERT.</h2>
             </div>
             <label class="control-label">Search location</label>
+            <br>
         <div class="input-group">
             <input name="place" type="text" class="form-control"
                ng-model="vm.searchPlace" required autofocus />
@@ -67,7 +73,7 @@
             </span>
         </div>
 
-        <div id="map" style="height: 400px; margin: 20px 0; border-radius: 5px; border: 1px solid silver;"></div>
+        <div id="map" style="height: 300px; margin: 20px 0; border-radius: 5px; border: 1px solid silver;"></div>
         <div class="form-group">
             <label class="control-label" for="field_estadoExpo">Active Expo</label>
             <input type="checkbox" name="estadoExpo" id="field_estadoExpo"
@@ -78,6 +84,8 @@
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary" ng-click="vm.save()">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
         </button>
+    <br>
+    <br>
 </form>
 <!--<script src="https://maps.google.com/maps/api/js?key=AIzaSyCQ10jip8QP1hVq8fOf78fySZd5sAeEoY4&libraries=visualization,drawing,geometry,places"></script>-->
 <!---->

@@ -5,21 +5,23 @@
         .module('expoCrApp')
         .controller('ExposicionDialogController', ExposicionDialogController);
 
-    ExposicionDialogController.$inject = ['SubCategoria','$timeout', '$scope', '$stateParams', '$q', 'entity', 'Exposicion', 'Distrito', 'Categoria', 'Charla', 'Amenidades', 'Beacon', 'Timeline', 'Click', 'Pregunta', 'Usuario', 'Map'];
+    ExposicionDialogController.$inject = ['SubCategoria','$state','$filter','$timeout', '$scope', '$stateParams', '$q', 'entity', 'Exposicion', 'Distrito', 'Categoria', 'Charla', 'Amenidades', 'Beacon', 'Timeline', 'Click', 'Pregunta', 'Usuario', 'Map'];
 
-    function ExposicionDialogController (SubCategoria, $timeout, $scope, $stateParams, $q, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta, Usuario, Map) {
+    function ExposicionDialogController (SubCategoria,$state,$filter,$timeout, $scope, $stateParams, $q, entity, Exposicion, Distrito, Categoria, Charla, Amenidades, Beacon, Timeline, Click, Pregunta, Usuario, Map) {
 
         var vm = this;
 
         vm.typeExpo = "";
 
-        vm.subCategoria = {};
         vm.listSubCategory = [];
         vm.checked = false;
 
+
+        vm.subCategoriaToSave = [];
+
         vm.exposicion = entity;
         vm.exposicion.fechaInicio = new Date();
-        vm.exposicion.fechaFin = new Date("dd/MM/yyyy");
+        vm.exposicion.fechaFin = new Date();
         vm.currentDate = new Date();
         vm.save = save;
         vm.sendInvite = sendInvite;
@@ -29,6 +31,7 @@
         vm.amenidades = Amenidades.query();
         vm.beacons = Beacon.query();
         vm.timelines = Timeline.query();
+
         vm.clicks = Click.query({filter: 'exposicion-is-null'});
         $q.all([vm.exposicion.$promise, vm.clicks.$promise]).then(function() {
             if (!vm.exposicion.clickId) {
@@ -45,10 +48,19 @@
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        vm.saveSubCategory = function(){
-            vm.subCategoria.categoriaId = vm.exposicion.categoriaId;
-            SubCategoria.save(vm.subCategoria);
+
+        vm.addSubCategoria = function(name){
+            if(!vm.subCategoriaToSave.includes(name))vm.subCategoriaToSave.push(name);
             vm.checked = true;
+        }
+
+        vm.saveSubCategory = function(){
+           for (var i in vm.subCategoriaToSave) {
+                vm.subCategoria = {};
+                vm.subCategoria.nombre = vm.subCategoriaToSave[i];
+                vm.subCategoria.categoriaId = vm.exposicion.categoriaId;
+                SubCategoria.save(vm.subCategoria);
+           }
         }
 
          vm.place = {};
@@ -77,15 +89,20 @@
         function save () {
             vm.isSaving = true;
             vm.exposicion.usuarioId = 5 // FUCKING USER EN SESION PERO NO HAY SESION LOL
+            vm.exposicion.fechaInicio = $filter('date')(vm.exposicion.fechaInicio, "dd-MM-yyyy");
+            vm.exposicion.fechaFin = $filter('date')(vm.exposicion.fechaFin, "dd-MM-yyyy");
             if (vm.exposicion.id !== null) {
                 Exposicion.update(vm.exposicion, onSaveSuccess, onSaveError);
             } else {
+                vm.saveSubCategory();
                 Exposicion.save(vm.exposicion, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('expoCrApp:exposicionUpdate', result);
+//            $scope.$emit('expoCrApp:exposicionUpdate', result);
+            $state.go('exposicion');
+
             vm.isSaving = false;
         }
 
@@ -111,6 +128,11 @@
         function onSendInviteErrorError () {
             vm.isSaving = false;
         }
+
+        vm.removeSubCategory = function (index){
+            vm.subCategoriaToSave.splice(index, 1);
+            console.log(vm.subCategoriaToSave);
+          }
 
 
     }

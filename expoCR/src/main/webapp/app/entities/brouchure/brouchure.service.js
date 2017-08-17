@@ -19,7 +19,7 @@
                     }
                     return data;
                 }
-            },
+            },'queryById': { method:'GET', url:'api/brouchures/:id', params:{id:'id'} },
             'update': { method:'PUT' }
         });
     }

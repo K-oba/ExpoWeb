@@ -96,7 +96,7 @@ public class ExposicionService {
 
         for (StandDTO dto : e.getStands()) {
             for (Stand stand : exposicion.getStands()) {
-                if (dto.getId()==stand.getId()){
+                if (dto.getId()==stand.getId() && stand.getBeacon()!=null){
                     dto.getBeacon().setId(stand.getBeacon().getId());
                     dto.getBeacon().setUuid(stand.getBeacon().getUuid());
                 }
@@ -143,6 +143,21 @@ public class ExposicionService {
         return exposicionMapper.toDto(exposicion);
     }
 
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param startDate start date
+     *  @param endDate end date
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findBetweenDates(String startDate, String endDate) {
+        log.debug("Request to get all Exposicions");
+        List<Exposicion> exposicion = exposicionRepository.findBetweenDates(startDate,endDate, true);
+        return exposicionMapper.toDto(exposicion);
+    }
+
     /**
      *  Get all the exposicions.
      *
@@ -154,5 +169,17 @@ public class ExposicionService {
         log.debug("Request to get all Exposicions");
         List<Exposicion> exposicion = exposicionRepository.findByName(name, true);
         return exposicionMapper.toDto(exposicion);
+    }
+
+    /**
+     *  Get all the exposicions.
+     *
+     *  @param date name expo
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<ExposicionDTO> findAllByCurrentDate(String date) {
+        log.debug("Request to get all Exposicions");
+        return exposicionMapper.toDto(exposicionRepository.findAllByDay(date, date));
     }
 }

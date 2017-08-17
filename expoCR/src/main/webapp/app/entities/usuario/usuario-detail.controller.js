@@ -15,11 +15,8 @@
         vm.isVisble = false;
         vm.exposicions = Exposicion.queryByUser({userId:1});
         console.log(vm.exposicions);
-        if(vm.usuario.standId == null){
-            vm.isVisble = false;
-        }else{
-            vm.isVisble = true;
-        }
+        vm.isCompany = vm.usuario.standId != null ? true : false;
+        vm.isOrganizer = vm.exposicions != null ? true : false;
 
         var unsubscribe = $rootScope.$on('expoCrApp:usuarioUpdate', function(event, result) {
             vm.usuario = result;

@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "idExpo",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "deviceId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "standId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "subcategoryId",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "Instant"
+        }
+    ],
+    "changelogDate": "20170807083108",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "historial_usuarios_expo",
+    "pagination": "pager"
+}

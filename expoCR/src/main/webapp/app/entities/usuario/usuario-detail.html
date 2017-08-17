@@ -1,6 +1,5 @@
 
 <div>
-    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span>Name</span></dt>
         <dd>
@@ -10,13 +9,13 @@
         <dd>
             <span>{{vm.usuario.correo}}</span>
         </dd>
-        <dt ng-show="{{vm.isVisble}}"><span>Stand</span></dt>
-        <dd ng-show="{{vm.isVisble}}">
+        <dt ng-show="{{vm.isCompany}}"><span>Stand</span></dt>
+        <dd ng-show="{{vm.isCompany}}">
             <a ui-sref="stand-detail({id:vm.usuario.standId})">{{vm.usuario.standNombre}}</a>
         </dd>
-        <dt ng-hide="{{vm.isVisble}}"> <span>Expositions</span> </dt>
+        <dt ng-hide="{{vm.isOrganizer}}"> <span>Expositions</span> </dt>
 
-        <dd ng-hide="{{vm.isVisble}}" ng-repeat="exposition in vm.exposicions">
+        <dd ng-hide="{{vm.isOrganizer}}" ng-repeat="exposition in vm.exposicions">
             <a ui-sref="exposicion-detail({id:exposition.id})">{{exposition.nombre}}</a>
         </dd>
     </dl>
@@ -25,10 +24,5 @@
             ui-sref="{{ vm.previousState }}"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
-
-    <button type="button" ui-sref="usuario-detail.edit({id:vm.usuario.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
     </button>
 </div>

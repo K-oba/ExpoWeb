@@ -3,11 +3,11 @@
 
     angular
         .module('expoCrApp')
-        .controller('ExposicionController', ExposicionController);
+        .controller('HistorialUsuariosExpoController', HistorialUsuariosExpoController);
 
-    ExposicionController.$inject = ['$state', 'Exposicion', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
+    HistorialUsuariosExpoController.$inject = ['$state', 'HistorialUsuariosExpo', 'ParseLinks', 'AlertService', 'paginationConstants', 'pagingParams'];
 
-    function ExposicionController($state, Exposicion, ParseLinks, AlertService, paginationConstants, pagingParams) {
+    function HistorialUsuariosExpoController($state, HistorialUsuariosExpo, ParseLinks, AlertService, paginationConstants, pagingParams) {
 
         var vm = this;
 
@@ -17,17 +17,13 @@
         vm.transition = transition;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
 
-        loadAllByUser();
-
-        function loadAllByUser(){
-          vm.exposicions = Exposicion.queryByUser({userId:5});
-        }
-
-//        loadAll();
+        loadAll();
 
         function loadAll () {
-            Exposicion.queryByUser({
-                userId:5
+            HistorialUsuariosExpo.query({
+                page: pagingParams.page - 1,
+                size: vm.itemsPerPage,
+                sort: sort()
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -40,7 +36,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.exposicions = data;
+                vm.historialUsuariosExpos = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

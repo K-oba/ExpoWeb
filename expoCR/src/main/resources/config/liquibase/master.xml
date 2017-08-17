@@ -22,6 +22,7 @@
     <include file="classpath:config/liquibase/changelog/20170606043646_added_entity_Stand.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170606044505_added_entity_Beacon.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170606045603_added_entity_Click.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170807083108_added_entity_HistorialUsuariosExpo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170606022609_added_entity_constraints_Usuario.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170606024921_added_entity_constraints_Canton.xml" relativeToChangelogFile="false"/>

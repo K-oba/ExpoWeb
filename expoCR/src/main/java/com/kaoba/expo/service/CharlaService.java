@@ -82,7 +82,7 @@ public class CharlaService {
         log.debug("Request to delete Charla : {}", id);
         charlaRepository.delete(id);
     }
-    
+
     public List<CharlaDTO> getCharlaByExpo(Long expoId){
         //Charla charla = charlaRepository.findByExpoId(expoId);
         return StreamSupport

@@ -1,74 +1,56 @@
 
 <div>
-    <h2><span>Exposicion</span> {{vm.exposicion.id}}</h2>
+    <h2><span>Exposition</span> {{vm.exposicion.nombre}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Nombre</span></dt>
-        <dd>
-            <span>{{vm.exposicion.nombre}}</span>
-        </dd>
-        <dt><span>Descripcion</span></dt>
+        <dt><span>Description</span></dt>
         <dd>
             <span>{{vm.exposicion.descripcion}}</span>
         </dd>
-        <dt><span>Estado Expo</span></dt>
-        <dd>
-            <span>{{vm.exposicion.estadoExpo}}</span>
+        <dt><span>State</span></dt>
+        <dd ng-if="vm.exposicion.estadoExpo">
+        <span>Active</span>
         </dd>
-        <dt><span>Fecha Inicio</span></dt>
+        <dd ng-if="!vm.exposicion.estadoExpo">
+            <span>Inactive</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
         <dd>
             <span>{{vm.exposicion.fechaInicio}}</span>
         </dd>
-        <dt><span>Fecha Fin</span></dt>
+        <dt><span>End Date</span></dt>
         <dd>
             <span>{{vm.exposicion.fechaFin}}</span>
         </dd>
-        <dt><span>Coordenadas</span></dt>
-        <dd>
-            <span>{{vm.exposicion.coordenadas}}</span>
-        </dd>
-        <dt><span>Distrito</span></dt>
-        <dd>
-            <a ui-sref="distrito-detail({id:vm.exposicion.distritoId})">{{vm.exposicion.distritoId}}</a>
-        </dd>
-        <dt><span>Categoria</span></dt>
-        <dd>
-            <a ui-sref="categoria-detail({id:vm.exposicion.categoriaId})">{{vm.exposicion.categoriaId}}</a>
-        </dd>
-        <dt><span>Amenidades</span></dt>
-        <dd>
+        <dt ng-show="{{vm.byAmenities}}"><span>Amenities</span></dt>
+        <dd ng-show="{{vm.byAmenities}}">
             <span ng-repeat="amenidades in vm.exposicion.amenidades">
-                <a ui-sref="amenidades-detail({id: amenidades.id})">{{amenidades.id}}</a>{{$last ? '' : ', '}}
+                <a style="text-decoration: none; color:black">{{amenidades.nombre}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span>Click</span></dt>
+        <dt><span>Organizer</span></dt>
         <dd>
-            <a ui-sref="click-detail({id:vm.exposicion.clickId})">{{vm.exposicion.clickId}}</a>
+            <a ui-sref="usuario-detail({id:vm.exposicion.usuarioId})" style="text-decoration: none; color:black">{{vm.exposicion.usuarioNombre}}</a>
         </dd>
-        <dt><span>Usuario</span></dt>
-        <dd>
-            <a ui-sref="usuario-detail({id:vm.exposicion.usuarioId})">{{vm.exposicion.usuarioNombre}}</a>
-        </dd>
-        <dt><span>Stand</span></dt>
-        <dd>
+        <dt ng-show="{{vm.byStands}}"><span>Stand</span></dt>
+        <dd ng-show="{{vm.byStands}}">
             <span ng-repeat="stand in vm.exposicion.stands">
-                <a ui-sref="stand-detail({id: stand.id})">{{stand.nombre}}</a>{{$last ? '' : ', '}}
+            <a ui-sref="stand-detail({id: stand.id})">{{stand.nombre}}</a>{{$last ? '' : ', '}}
             </span>
+        </dd>
+        <dt ng-show="{{vm.byCategories}}"><span>Categories</span></dt>
+        <dd ng-show="{{vm.byCategories}}">
+            <span ng-repeat="subCategory in vm.subCategories">
+            <a ui-sref="sub-categoria-detail({id: subCategory.id})">{{subCategory.nombre}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dd id="map" style="height: 400px; margin: 20px 0; border-radius: 5px; border: 1px solid silver;">
         </dd>
     </dl>
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
-
-    <button type="button" ui-sref="exposicion-detail.edit({id:vm.exposicion.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down"> Edit</span>
-    </button>
     <button type="button" ui-sref="exposicion-detail.invite({id:vm.exposicion.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-send"></span>
         <span class="hidden-sm-down"> Invite Stand</span>
     </button>
+    <br>
+    <br>
 </div>

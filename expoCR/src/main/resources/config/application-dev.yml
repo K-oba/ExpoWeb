@@ -26,7 +26,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://expotech.c4s7xosjuktx.us-east-1.rds.amazonaws.com:3306/expoCR?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://expotech.c4s7xosjuktx.us-east-1.rds.amazonaws.com:3306/expocr?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: kaoba #root #kaoba
         password: 4Mb-hES-nto-anb #root #4Mb-hES-nto-anb
         hikari:
