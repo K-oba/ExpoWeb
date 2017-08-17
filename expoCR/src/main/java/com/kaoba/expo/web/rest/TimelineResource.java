@@ -123,4 +123,13 @@ public class TimelineResource {
         timelineService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/timeLineByExpo/{expoId}")
+    @Timed
+    public ResponseEntity<List<TimelineDTO>> getTimeLineByExpo(@PathVariable Long expoId) {
+        log.debug("REST request to get TimeLine : {}", expoId);
+        List<TimelineDTO> list = timelineService.getTimeLineByExpo(expoId);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(list));
+    }
 }
+
