@@ -85,4 +85,12 @@ public class HistorialUsuariosExpoService {
         log.debug("Request to delete HistorialUsuariosExpo : {}", id);
         historialUsuariosExpoRepository.delete(id);
     }
+
+    public int getPersonsExpo(int idExpo) {
+        return historialUsuariosExpoRepository.getPersonsExpo(idExpo);
+    }
+
+    public int getPersonsStandsExpo(int idExpo, int idStand) {
+        return historialUsuariosExpoRepository.getPersonsStandsExpo(idExpo,idStand);
+    }
 }
