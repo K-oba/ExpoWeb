@@ -123,4 +123,12 @@ public class PostResource {
         postService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    @GetMapping("/getPostByTimeLine/{timeLineId}")
+    @Timed
+    public ResponseEntity<List<PostDTO>> getPostByTimeLine(@PathVariable Long timeLineId) {
+        log.debug("REST request to get TimeLine : {}", timeLineId);
+        List<PostDTO> list = postService.getPostByTimeLine(timeLineId);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(list));
+    }
 }
