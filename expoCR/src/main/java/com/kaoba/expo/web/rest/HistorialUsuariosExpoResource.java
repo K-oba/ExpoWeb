@@ -54,9 +54,14 @@ public class HistorialUsuariosExpoResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new historialUsuariosExpo cannot already have an ID")).body(null);
         }
         HistorialUsuariosExpoDTO result = historialUsuariosExpoService.save(historialUsuariosExpoDTO);
-        return ResponseEntity.created(new URI("/api/historial-usuarios-expos/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        if (result.getId() != null) {
+            return ResponseEntity.created(new URI("/api/historial-usuarios-expos/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+                .body(result);
+        }else {
+            return null;
+        }
+
     }
 
     /**
