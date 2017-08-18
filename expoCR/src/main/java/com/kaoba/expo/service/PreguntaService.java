@@ -2,8 +2,13 @@ package com.kaoba.expo.service;
 
 import com.kaoba.expo.domain.Pregunta;
 import com.kaoba.expo.repository.PreguntaRepository;
+import com.kaoba.expo.service.dto.CharlaDTO;
 import com.kaoba.expo.service.dto.PreguntaDTO;
 import com.kaoba.expo.service.mapper.PreguntaMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -77,5 +82,14 @@ public class PreguntaService {
     public void delete(Long id) {
         log.debug("Request to delete Pregunta : {}", id);
         preguntaRepository.delete(id);
+    }
+    
+        public List<PreguntaDTO> getPreguntasByExpo(Long expoId){
+        //Charla charla = charlaRepository.findByExpoId(expoId);
+        return StreamSupport
+            .stream(preguntaRepository.findAll().spliterator(), false)
+            .filter(pregunta -> pregunta.getExposicion().getId() == expoId)
+            .map(preguntaMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }
