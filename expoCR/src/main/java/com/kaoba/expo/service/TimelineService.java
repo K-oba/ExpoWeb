@@ -2,8 +2,13 @@ package com.kaoba.expo.service;
 
 import com.kaoba.expo.domain.Timeline;
 import com.kaoba.expo.repository.TimelineRepository;
+import com.kaoba.expo.service.dto.CharlaDTO;
 import com.kaoba.expo.service.dto.TimelineDTO;
 import com.kaoba.expo.service.mapper.TimelineMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -77,5 +82,14 @@ public class TimelineService {
     public void delete(Long id) {
         log.debug("Request to delete Timeline : {}", id);
         timelineRepository.delete(id);
+    }
+    
+        public List<TimelineDTO> getTimeLineByExpo(Long expoId){
+        //Charla charla = charlaRepository.findByExpoId(expoId);
+        return StreamSupport
+            .stream(timelineRepository.findAll().spliterator(), false)
+            .filter(timeline -> timeline.getExposicion().getId() == expoId)
+            .map(timelineMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }

@@ -3,7 +3,12 @@ package com.kaoba.expo.service;
 import com.kaoba.expo.domain.Post;
 import com.kaoba.expo.repository.PostRepository;
 import com.kaoba.expo.service.dto.PostDTO;
+import com.kaoba.expo.service.dto.TimelineDTO;
 import com.kaoba.expo.service.mapper.PostMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -77,5 +82,13 @@ public class PostService {
     public void delete(Long id) {
         log.debug("Request to delete Post : {}", id);
         postRepository.delete(id);
+    }
+    
+    public List<PostDTO> getPostByTimeLine(Long timeLineId){
+        return StreamSupport
+            .stream(postRepository.findAll().spliterator(), false)
+            .filter(post -> post.getTimeline().getId() == timeLineId)
+            .map(postMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }
